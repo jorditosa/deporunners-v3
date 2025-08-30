@@ -1,0 +1,51 @@
+name: Test Ionic App
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Lint code
+      run: npm run lint --if-present
+      
+    - name: Run tests
+      run: npm run test:e2e --if-present
+      
+    - name: Build app
+      run: npm run build
+      
+    - name: Test dev server startup
+      run: |
+        # Inicia el servidor en background
+        npm run dev &
+        DEV_PID=$!
+        
+        # Espera a que el servidor esté listo
+        echo "Esperando que el servidor arranque..."
+        sleep 30
+        
+        # Verifica que el servidor responde
+        curl -f http://localhost:5173 || exit 1
+        
+        # Mata el proceso del servidor
+        kill $DEV_PID
+        
+        echo "✅ El servidor dev arranca correctamente"
