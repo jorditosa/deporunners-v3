@@ -1,8 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 
-const Tab1: React.FC = () => {
+const PrivateHome: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -16,10 +15,14 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Tab 1</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+
+        <main className='container'>
+        <h1 className='text-2xl text-primary'>Hola Deporunners</h1>
+
+        </main>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Tab1;
+export default PrivateHome;
