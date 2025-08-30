@@ -36,6 +36,7 @@ import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
+import '@fontsource-variable/noto-sans-jp';
 import './theme/variables.css';
 import { ClipboardList, Home, ShoppingCart, User } from 'lucide-react';
 import AppRoutes from './routes/AppRoutes';

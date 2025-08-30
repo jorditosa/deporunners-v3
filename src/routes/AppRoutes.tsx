@@ -1,8 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
-import PrivateHome from '../pages/PrivateHome';
+import PrivateHome from '../pages/privatehome/PrivateHome';
 import Tab2 from '../pages/Tab2';
 import Tab3 from '../pages/Tab3';
-import Tab4 from '../pages/Tab4';
+import Tab4 from '../pages/profile/Tab4';
 
 
 const AppRoutes: React.FC = () => (

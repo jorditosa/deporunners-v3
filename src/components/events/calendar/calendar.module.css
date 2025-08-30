@@ -1,0 +1,51 @@
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ion-card.ion-color {
+    color: --ion-color-light;
+  }
+
+  .card-modern {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    padding-top: 0.5rem;
+    color: white;
+    background: linear-gradient(45deg, #3f51b5, #5a67d8);
+    padding: 0.75rem;
+  }
+  
+  .card-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 0.5rem;
+    color: #d1d5db;
+  }
+  
+  .card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+  }
+  

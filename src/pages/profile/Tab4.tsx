@@ -1,28 +1,24 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Tab1.css';
+import './Tab4.css';
 
-const PrivateHome: React.FC = () => {
+const Tab4: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>Tab 4</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
+            <IonTitle size="large">Tab 4</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <main className='container'>
-        <h1 className='text-2xl text-primary'>Hola Deporunners</h1>
-
-        </main>
+        <h1>Perfil</h1>
       </IonContent>
     </IonPage>
   );
 };
 
-export default PrivateHome;
+export default Tab4;
