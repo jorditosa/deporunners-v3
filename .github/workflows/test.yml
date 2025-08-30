@@ -45,7 +45,7 @@ jobs:
         
         # Espera a que el servidor esté listo
         echo "Esperando que el servidor arranque..."
-        sleep 30
+        sleep 8
         
         # Verifica que el servidor responde
         curl -f http://localhost:5173 || exit 1
