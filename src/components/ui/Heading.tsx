@@ -27,7 +27,7 @@ export default function Heading({
     const HeadingTag = variant as keyof JSX.IntrinsicElements;
 
     return (
-        <div className={`flex items-center gap-4 py-4 ${className}`}>
+        <div className={`flex items-center justify-center gap-4 py-4 ${className}`}>
             {Icon && (
                 <Icon 
                     className={`size-${iconSize} text-secondary ${iconClassName}`} 

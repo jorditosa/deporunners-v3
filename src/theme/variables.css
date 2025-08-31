@@ -6,7 +6,7 @@ http://ionicframework.com/docs/theming/ */
 @theme {
   --color-primary: #3b61aa;
   --color-secondary: #03bdff;
-  --color-tertiary: #c8d629;
+  --color-tertiary: #c2d344;
   --color-white: #ffffff;
   --font-family-roboto: Roboto, sans-serif;
 }
@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-  @apply w-full mx-auto px-4 sm:px-6 py-8
+  @apply w-full mx-auto p-4
 }
 
 

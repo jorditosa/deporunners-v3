@@ -7,6 +7,7 @@ import Heading from '../../components/ui/Heading'
 import { LogIn } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
+import { toast } from 'react-toastify'
 
 export default function LoginPage() {
     const { handleSubmit, register, formState: { errors }, reset } = useForm<LoginFormData>({
@@ -18,25 +19,24 @@ export default function LoginPage() {
     const { mutate, isPending } = useMutation({
         mutationFn: authActions.login,
         onError: (error) => {
-            console.log(error.message)
+            toast.error(error.message)
         },
-        onSuccess: (response) => {
-            console.log(response)
+        onSuccess: () => {
+            toast.error("Login correcte")
             reset()
         }
     })
 
     const submitForm = (formData: LoginFormData) => {
-        console.log(formData)
         mutate(formData)
-
     }
+
     return (
         <PublicLayout>
             <IonRow>
                 <IonCol size="12" className="p-4">
                     <IonRow className="block m-auto max-w-lg">
-                        <IonCard color={"light"} className="block shadow-md shadow-slate-600 rounded-xl bg-white/90">
+                        <IonCard color={"light"} className="block shadow-md shadow-slate-600 rounded-xl bg-white">
                             <IonCardHeader className='container'>
                                 <Heading
                                     title="iniciar Sessió"
@@ -52,9 +52,10 @@ export default function LoginPage() {
                                         <IonInput
                                             color={"secondary"}
                                             label="Email"
-                                            fill="outline"
                                             type="email"
-                                            {...register("email", { required: true })}
+                                            {...register("email", { 
+                                                required: "L'email és obligatori",
+                                             })}
                                             required
                                         />
                                         {errors.email && (
@@ -67,9 +68,10 @@ export default function LoginPage() {
                                         <IonInput
                                             color={"secondary"}
                                             label="Password"
-                                            fill="outline"
                                             type="password"
-                                            {...register("password", { required: true })}
+                                            {...register("password", { 
+                                                required: "El password és obligatori",
+                                             })}
                                             required
                                         >
                                             <IonInputPasswordToggle color={"secondary"} slot="end"></IonInputPasswordToggle>
@@ -92,13 +94,6 @@ export default function LoginPage() {
                                     </IonRow>
 
                                 </form>
-
-                                {/* <IonAlert
-                                    header={msg}
-                                    isOpen={isAlert}
-                                    onDidDismiss={() => setIsAlert(false)}
-                                    buttons={["Ok"]}
-                                ></IonAlert> */}
                             </IonCardContent>
                         </IonCard>
                     </IonRow>
