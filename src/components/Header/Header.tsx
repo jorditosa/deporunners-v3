@@ -8,7 +8,7 @@ interface Props {
 
 const Header: React.FC<Props> = ({ title }) => {
     return (
-        <IonHeader >
+        <IonHeader>
         <IonToolbar color='primary'>
           <IonButtons slot="start">
             <IonBackButton
