@@ -22,7 +22,7 @@ export default function LoginPage() {
         },
         onSuccess: (response) => {
             console.log(response)
-            
+            reset()
         }
     })
 

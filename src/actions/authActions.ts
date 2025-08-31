@@ -6,12 +6,13 @@ export const authActions = {
 
 
     login: async (formData: LoginFormData): Promise<any> => {
+        const {email, password} = formData;
         try {
             const {data} = await apiClient.post(
-                'auth/local?filters[email][$eq]=${email}?populate=*',
+                `auth/local?filters[email][$eq]=${email}?populate=*`,
                 {
-                    identifier: formData.email,
-                    password: formData.password
+                    identifier:email,
+                    password: password
                 }
             );
             return data
