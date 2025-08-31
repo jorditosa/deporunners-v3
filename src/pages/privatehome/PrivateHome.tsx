@@ -1,6 +1,4 @@
-import { IonContent, IonPage } from '@ionic/react';
 import './privatehome.css';
-import HeaderHome from '../../components/Header/HeaderHome';
 import { useQuery } from '@tanstack/react-query';
 import { eventsActions } from '../../actions/eventsActions';
 import Calendar from '../../components/events/calendar/CalendarSwiper';
@@ -8,6 +6,8 @@ import { Calendar1, Newspaper } from 'lucide-react';
 import { postsActions } from '../../actions/postsActions';
 import Posts from '../../components/posts/Posts';
 import Spinner from '../../components/ui/Spinner';
+import PrivateLayout from '../PrivateLayout';
+import Heading from '../../components/ui/Heading';
 
 const PrivateHome: React.FC = () => {
   const { data: events, isLoading: isLoadingEvents } = useQuery({
@@ -20,32 +20,37 @@ const PrivateHome: React.FC = () => {
     queryFn: postsActions.getAllPosts
   });
 
-  if (isLoadingEvents || isLoadingPosts ) return <Spinner />
-  if (events ) return (
-    <IonPage>
-      <HeaderHome />
-      <IonContent fullscreen color="light">
+  if (isLoadingEvents || isLoadingPosts) return <Spinner />
+  if (events) return (
+    <PrivateLayout
+      title='Dashboard'
+      headerColor='secondary'
+      contentColor='light'
+    >
+      <main className='container'>
 
-        <main className='container'>
-          <div className='flex items-center gap-4'>
-            <Calendar1 className=" size-10 text-secondary" />
-            <h2 className='text-2xl text-secondary'>el Calendari</h2>
-          </div>
+        <Heading
+          title="el Calendari"
+          variant="h1"
+          icon={Calendar1}
+          iconSize={12}
+        />
 
-          <Calendar
-            events={events}
-          />
+        <Calendar
+          events={events}
+        />
 
-          <div className='flex items-center gap-4'>
-            <Newspaper className=" size-10 text-secondary" />
-            <h2 className='text-2xl text-secondary'>notícies</h2>
-          </div>
+        <Heading
+          title="notícies"
+          variant="h1"
+          icon={Newspaper}
+          iconSize={12}
+        />
 
-          <Posts posts={posts} />
+        <Posts posts={posts} />
 
-        </main>
-      </IonContent>
-    </IonPage>
+      </main>
+    </PrivateLayout>
   );
 };
 

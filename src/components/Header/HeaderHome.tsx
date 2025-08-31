@@ -6,9 +6,9 @@ import { ExternalLink } from 'lucide-react';
 const HeaderHome: React.FC = () => {
     return (
         <IonHeader>
-            <IonToolbar color='secondary' className='py-2'>
+            <IonToolbar color='secondary' className='py-1'>
 
-                <IonImg src="/lletra-blanca.png" className='w-48 ps-1' />
+                <IonImg src="/logo.png" className='w-60 ps-1' />
                 <a
                     target='_blank'
                     href={'https://deporunners.cat/patrocinadors/'}

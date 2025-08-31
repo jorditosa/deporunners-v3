@@ -1,12 +1,14 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PublicHome from '../pages/publichome/PublicHome';
+import LoginPage from '../pages/login/LoginPage';
 
 
 const PublicRoutes: React.FC = () => (
   <>
-    <Route exact path="/">
-      <PublicHome />
-    </Route>
+    <Switch>
+      <Route exact path="/login" component={LoginPage} />
+      <Route path="/" component={PublicHome} />
+    </Switch>
   </>
 );
 

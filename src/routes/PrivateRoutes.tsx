@@ -9,22 +9,22 @@ import {
 import { ClipboardList, Home, ShoppingCart, User } from 'lucide-react';
 
 import PrivateHome from '../pages/privatehome/PrivateHome';
-import Tab2 from '../pages/Tab2';
-import Tab3 from '../pages/Tab3';
 import Tab4 from '../pages/profile/Tab4';
+import ListsPage from '../pages/lists/ListsPage';
+import ShopPage from '../pages/shop/ShopPage';
 
 const PrivateRoutes: React.FC = () => (
   <IonTabs>
     <IonRouterOutlet>
       <Switch>
         <Route exact path="/app/dashboard" component={PrivateHome} />
-        <Route exact path="/app/lists" component={Tab2} />
-        <Route path="/app/shop" component={Tab3} />
+        <Route exact path="/app/lists" component={ListsPage} />
+        <Route path="/app/shop" component={ShopPage} />
         <Route path="/app/profile" component={Tab4} />
       </Switch>
     </IonRouterOutlet>
     
-    <IonTabBar slot="bottom" color='secondary' className='h-16'>
+    <IonTabBar slot="bottom" color='secondary' className='h-16 border-t-2 border-primary'>
       <IonTabButton tab="dashboard" href="/app/dashboard" className='bg-secondary'>
         <Home className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Inici</IonLabel>

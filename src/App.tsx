@@ -27,8 +27,8 @@ import '@ionic/react/css/palettes/dark.system.css';
 import '@fontsource-variable/noto-sans-jp';
 import './theme/variables.css';
 
-import PublicHome from './pages/publichome/PublicHome';
 import PrivateRoutes from './routes/PrivateRoutes';
+import PublicRoutes from './routes/PublicRoutes';
 
 setupIonicReact();
 
@@ -37,11 +37,9 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonRouterOutlet>
         <Switch>
-          {/* Ruta pública exacta sin tabs */}
-          <Route exact path="/" component={PublicHome} />
-          
-          {/* Todas las rutas que empiecen con /app tendrán tabs */}
           <Route path="/app" component={PrivateRoutes} />
+
+          <Route path="/" component={PublicRoutes} />
         </Switch>
       </IonRouterOutlet>
     </IonReactRouter>

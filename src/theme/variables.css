@@ -5,7 +5,7 @@ http://ionicframework.com/docs/theming/ */
 
 @theme {
   --color-primary: #3b61aa;
-  --color-secondary: #3da3e6;
+  --color-secondary: #03bdff;
   --color-tertiary: #c8d629;
   --color-white: #ffffff;
   --font-family-roboto: Roboto, sans-serif;
@@ -29,7 +29,7 @@ body {
 	--ion-color-primary-shade: #282831;
 	--ion-color-primary-tint: #43434c;
 
-	--ion-color-secondary: #3da3e6;
+	--ion-color-secondary: #03bdff;
 	--ion-color-secondary-rgb: 61, 163, 230;
 	--ion-color-secondary-contrast: #000000;
 	--ion-color-secondary-contrast-rgb: 0, 0, 0;

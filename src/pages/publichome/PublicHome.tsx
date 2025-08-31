@@ -1,40 +1,41 @@
-import { IonButton, IonCol, IonContent, IonHeader, IonImg, IonPage, IonRow } from '@ionic/react';
-import Header from '../../components/Header/Header';
+import { IonButton, IonCol, IonRow } from '@ionic/react';
 import { Link } from 'react-router-dom';
-import styles from './public-home.module.css'
+import PublicLayout from '../PublicLayout';
 
 const PublicHome: React.FC = () => {
     return (
-        <IonPage className={styles.initPage} id='Public Home'>
-            <Header title='Home' />
-            <IonContent fullscreen color='secondary' className='relative'>
-                <IonHeader collapse="condense">
+        <PublicLayout
 
-                    <div className='container'>
-                        <IonImg src="/lletra-blanca.png" className='w-full ps-1' />
-                    </div>
+        >
+            <IonRow >
+                <main className='container'>
+                    <IonCol>
+                        <Link to={'/login'}>
+                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
+                                Iniciar Sessió
+                            </IonButton>
+                        </Link>
 
-                    <IonRow className='container'>
-                        <IonCol size='12' className='flex flex-col gap-y-6'>
+                    </IonCol>
 
-                            <Link to={'/login'}>
-                                <IonButton expand='full' color='light'>Iniciar Sessió</IonButton>
-                            </Link>
+                    <IonCol>
+                        <Link to={'/register'}>
+                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
+                                Primera vegada
+                            </IonButton>
+                        </Link>
+                    </IonCol>
 
-
-                            <Link to={'/register'}>
-                                <IonButton expand='full' color='light'>Primera vegada</IonButton>
-                            </Link>
-
-                            <Link to={'/forgot-landing'}>
-                                <IonButton expand='full' color='light'>Has oblidat la password?</IonButton>
-                            </Link>
-                        </IonCol>
-                    </IonRow>
-
-                </IonHeader>
-            </IonContent>
-        </IonPage>
+                    <IonCol>
+                        <Link to={'/forgot-landing'}>
+                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
+                                Has oblidat la password?
+                            </IonButton>
+                        </Link>
+                    </IonCol>
+                </main>
+            </IonRow>
+        </PublicLayout>
     );
 };
 
