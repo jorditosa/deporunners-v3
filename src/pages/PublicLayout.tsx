@@ -12,8 +12,7 @@ export default function PublicLayout({
   className = ""
 }: PublicLayoutProps) {
   return (
-    <IonPage className={className}>
-
+    <IonPage className={className} id="home-page">
       <IonContent color='secondary' className="container">
         <div className='container'>
           <IonImg src="/logo.png" className='w-full' />

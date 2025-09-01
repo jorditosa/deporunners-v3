@@ -4,9 +4,7 @@ import PublicLayout from '../PublicLayout';
 
 const PublicHome: React.FC = () => {
     return (
-        <PublicLayout
-
-        >
+        <PublicLayout>
             <IonRow >
                 <main className='container'>
                     <IonCol>

@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package cat.deporunners;
 
 import com.getcapacitor.BridgeActivity;
 
