@@ -25,7 +25,7 @@ const PublicHome: React.FC = () => {
                     </IonCol>
 
                     <IonCol>
-                        <Link to={'/forgot-landing'}>
+                        <Link to={'/forgot-password'}>
                             <IonButton color='light' expand='full' className='flex items-center mb-4'>
                                 Has oblidat la password?
                             </IonButton>

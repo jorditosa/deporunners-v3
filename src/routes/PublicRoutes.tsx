@@ -3,6 +3,7 @@ import PublicHome from '../pages/publichome/PublicHome';
 import LoginPage from '../pages/login/LoginPage';
 import RegisterPage from '../pages/register/RegisterPage';
 import ConfirmRegisterPage from '../pages/register/ConfirmRegisterPage';
+import ForgotPassword from '../pages/forgot-password/ForgotPassword';
 
 
 const PublicRoutes: React.FC = () => (
@@ -11,6 +12,7 @@ const PublicRoutes: React.FC = () => (
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
       <Route exact path="/register-confirm" component={ConfirmRegisterPage} />
+      <Route exact path="/forgot-password" component={ForgotPassword} />
       <Route path="/" component={PublicHome} />
     </Switch>
   </>

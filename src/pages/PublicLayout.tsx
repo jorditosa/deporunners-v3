@@ -1,5 +1,6 @@
 import { IonContent, IonImg, IonPage } from "@ionic/react";
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface PublicLayoutProps {
   children: ReactNode;
@@ -15,7 +16,9 @@ export default function PublicLayout({
     <IonPage className={className} id="home-page">
       <IonContent color='secondary' className="container">
         <div className='container'>
-          <IonImg src="/logo.png" className='w-full' />
+          <Link to={"/"}>
+            <IonImg src="/logo.png" className='w-full' />
+          </Link>
         </div>
         {children}
         <footer className="w-full flex justify-center items-center fixed bottom-4">

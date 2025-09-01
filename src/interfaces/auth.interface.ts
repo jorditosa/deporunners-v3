@@ -17,3 +17,8 @@ export interface RegisterFormData {
     password: string;
     repeatPassword: string;
 }
+
+
+export interface ForgotFormData {
+    email: string;
+}

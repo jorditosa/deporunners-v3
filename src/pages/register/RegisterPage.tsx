@@ -43,7 +43,7 @@ export default function RegisterPage() {
                         <IonCard color={"light"} className="block shadow-md shadow-slate-600 rounded-xl bg-white">
                             <IonCardHeader className='container'>
                                 <Heading
-                                    title="Donar-se d'Alta"
+                                    title="nova Alta a la App"
                                     variant="h1"
                                     icon={FilePenLine}
                                     iconSize={12}
@@ -51,15 +51,15 @@ export default function RegisterPage() {
                             </IonCardHeader>
 
                             <IonCardContent>
-                                <form onSubmit={handleSubmit(submitForm)}>
-                                      <div className="form-group mb-2">
+                                <form onSubmit={handleSubmit(submitForm)} noValidate>
+                                    <div className="form-group mb-2">
                                         <IonInput
                                             color={"secondary"}
                                             label="Email"
                                             type="email"
-                                            {...register("email", { 
+                                            {...register("email", {
                                                 required: "L'email és obligatori",
-                                             })}
+                                            })}
                                             required
                                         />
                                         {errors.email && (
@@ -73,9 +73,13 @@ export default function RegisterPage() {
                                             color={"secondary"}
                                             label="Password"
                                             type="password"
-                                            {...register("password", { 
+                                            {...register("password", {
                                                 required: "El password és obligatori",
-                                             })}
+                                                minLength: {
+                                                    value: 6,
+                                                    message: "El password ha de tenir almenys 6 caràcters"
+                                                }
+                                            })}
                                             required
                                         >
                                             <IonInputPasswordToggle color={"secondary"} slot="end"></IonInputPasswordToggle>
@@ -91,9 +95,13 @@ export default function RegisterPage() {
                                             color={"secondary"}
                                             label="Repeteix Password"
                                             type="text"
-                                            {...register("repeatPassword", { 
+                                            {...register("repeatPassword", {
                                                 required: "El password és obligatori",
-                                             })}
+                                                minLength: {
+                                                    value: 6,
+                                                    message: "El password ha de tenir almenys 6 caràcters"
+                                                }
+                                            })}
                                             required
                                         >
                                             <IonInputPasswordToggle color={"secondary"} slot="end"></IonInputPasswordToggle>

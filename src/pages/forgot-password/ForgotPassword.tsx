@@ -1,23 +1,21 @@
 import { useForm } from 'react-hook-form'
 import PublicLayout from '../PublicLayout'
-import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonInputPasswordToggle, IonButton, IonSpinner } from '@ionic/react'
+import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonButton, IonSpinner } from '@ionic/react'
 import { Link } from 'react-router-dom'
-import { LoginFormData } from '../../interfaces/auth.interface'
+import { ForgotFormData } from '../../interfaces/auth.interface'
 import Heading from '../../components/ui/Heading'
-import { LogIn } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
 
-export default function LoginPage() {
-    const { handleSubmit, register, formState: { errors }, reset } = useForm<LoginFormData>({
+export default function ForgotPassword() {
+    const { handleSubmit, register, formState: { errors }, reset } = useForm<ForgotFormData>({
         defaultValues: {
             email: '',
-            password: ''
         }
     })
     const { mutate, isPending } = useMutation({
-        mutationFn: authActions.login,
+        mutationFn: authActions.forgotPassword,
         onError: (error) => {
             toast.error(error.message)
         },
@@ -27,7 +25,7 @@ export default function LoginPage() {
         }
     })
 
-    const submitForm = (formData: LoginFormData) => {
+    const submitForm = (formData: ForgotFormData) => {
         mutate(formData)
     }
 
@@ -39,9 +37,8 @@ export default function LoginPage() {
                         <IonCard color={"light"} className="block shadow-md shadow-slate-600 rounded-xl bg-white">
                             <IonCardHeader className='container'>
                                 <Heading
-                                    title="iniciar Sessió"
+                                    title="recuperar Contrasenya"
                                     variant="h1"
-                                    icon={LogIn}
                                     iconSize={12}
                                 />
                             </IonCardHeader>
@@ -53,9 +50,9 @@ export default function LoginPage() {
                                             color={"secondary"}
                                             label="Email"
                                             type="email"
-                                            {...register("email", {
+                                            {...register("email", { 
                                                 required: "L'email és obligatori",
-                                            })}
+                                             })}
                                             required
                                         />
                                         {errors.email && (
@@ -64,35 +61,14 @@ export default function LoginPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <div className="form-group mb-2">
-                                        <IonInput
-                                            color={"secondary"}
-                                            label="Password"
-                                            type="password"
-                                            {...register("password", {
-                                                required: "El password és obligatori",
-                                                minLength: {
-                                                    value: 6,
-                                                    message: "El password ha de tenir almenys 6 caràcters"
-                                                }
-                                            })}
-                                            required
-                                        >
-                                            <IonInputPasswordToggle color={"secondary"} slot="end"></IonInputPasswordToggle>
-                                        </IonInput>
-                                        {errors.password && (
-                                            <span className="text-red-500">
-                                                Ups, el password no és correcte.
-                                            </span>
-                                        )}
-                                    </div>
+                                
 
                                     <IonRow>
                                         <IonButton color="secondary" expand='full' type="submit" className='w-full'>
                                             {
                                                 isPending
                                                     ? <IonSpinner color='light' />
-                                                    : <span className='text-white'>Accedir</span>
+                                                    : <span className='text-white'>Dona'm indicacions</span>
                                             }
                                         </IonButton>
                                     </IonRow>
@@ -102,9 +78,9 @@ export default function LoginPage() {
                         </IonCard>
                     </IonRow>
                     <IonRow>
-                        <Link to={'/forgot-password'} className='w-full my-4'>
+                        <Link to={'/register'} className='w-full my-4'>
                             <IonButton expand='full' color='light' fill='clear'>
-                                Has oblidat contrasenya?
+                                No estàs d'alta?
                             </IonButton>
                         </Link>
                     </IonRow>
