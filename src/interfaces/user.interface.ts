@@ -10,3 +10,17 @@ export interface User {
   soci_id: number;
   avatar: string; // URL
 }
+
+export interface UserList {
+  id: number;
+  attributes: {
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    username: string;
+    date: string;
+    avatar: string;
+    entreno_id: string;
+    hash_id: string;
+  };
+}

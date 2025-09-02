@@ -14,6 +14,8 @@ import ShopPage from '../pages/shop/ShopPage';
 import { APP_ROUTES } from '../constants/endpoints';
 import ListsTrainingsPage from '../pages/lists/training/ListsTrainingsPage';
 import ProfilePage from '../pages/profile/ProfilePage';
+import ListsRacesPage from '../pages/lists/races/ListsRacesPage';
+import ListsTrekkingsPage from '../pages/lists/trekking/ListsTrekkingsPage';
 
 const PrivateRoutes: React.FC = () => (
   <IonTabs>
@@ -22,6 +24,9 @@ const PrivateRoutes: React.FC = () => (
         <Route exact path={APP_ROUTES.PRIVATE_HOME} component={PrivateHome} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS} component={ListsPage} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS_TRAININGS} component={ListsTrainingsPage} />
+        <Route exact path={APP_ROUTES.PRIVATE_LISTS_TREKKINGS} component={ListsTrekkingsPage} />
+        <Route exact path={APP_ROUTES.PRIVATE_LISTS_RACES} component={ListsRacesPage} />
+        <Route exact path={APP_ROUTES.PRIVATE_LISTS_SOCIAL} component={ListsRacesPage} />
         <Route path={APP_ROUTES.PRIVATE_SHOP} component={ShopPage} />
         <Route path={APP_ROUTES.PRIVATE_PROFILE} component={ProfilePage} />
       </Switch>

@@ -13,3 +13,13 @@ interface TrainingAttributes {
   entreno_id: string;
   hash_id: string;
 }
+
+export interface ListAddingForm {
+  data: {
+    username?: string;
+    avatar?: string;
+    date: string;
+    entreno_id: string;
+    hash_id: string;
+  };
+}

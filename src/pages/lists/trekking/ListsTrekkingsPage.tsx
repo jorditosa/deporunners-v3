@@ -14,13 +14,10 @@ import { APP_ROUTES } from '../../../constants/endpoints';
 import { formatName } from '../../../helpers/formatName';
 import AddToList from '../../../components/lists/AddToList';
 import { UserList } from '../../../interfaces/user.interface';
-import { useAuth } from '../../../hooks/useAuth';
-import DeleteToList from '../../../components/lists/DeleteToList';
 
-const ListsTrainingsPage: React.FC = () => {
+const ListsTrekkingsPage: React.FC = () => {
     const router = useIonRouter();
     const queryClient = useQueryClient();
-    const { data: userLogged } = useAuth();
     const cachedEvents = queryClient.getQueryData<Event[]>(['events']);
     const { data: events, isLoading: isLoadingEvents } = useQuery<Event[]>({
         queryKey: ['events'],
@@ -29,46 +26,44 @@ const ListsTrainingsPage: React.FC = () => {
         initialData: cachedEvents
     });
 
-    const { data: trainingsList, isLoading: isLoadingTrainings } = useQuery({
-        queryKey: ['trainings-lists'],
-        queryFn: listsActions.getAllTrainingsLists,
+    const { data: trekkingList, isLoading: isLoadingTrekkings } = useQuery({
+        queryKey: ['trekkings-lists'],
+        queryFn: listsActions.getAllTrekkingsLists,
         staleTime: 5 * 60 * 1000,
         refetchOnWindowFocus: true
     });
 
-
-    if (isLoadingTrainings || isLoadingEvents) return <Spinner />
+    
+    if (isLoadingTrekkings || isLoadingEvents) return <Spinner />
     if (events) {
-        const training = events.find((event: Event) =>
-            event.categories?.[0]?.name === 'Curses'
-        );
-
-        console.log(userLogged)
+        const trekking = events.find((event: Event) =>
+            event.categories?.[0]?.name === 'Caminades'
+    );
 
         return (
             <PrivateLayout
-                title='Entrenaments'
+                title='Cacos'
                 headerColor='secondary'
                 contentColor='light'
             >
                 <main className='container'>
                     <Heading
-                        title='Llista entrenament'
+                        title='Llista CaCo'
                         variant='h2'
                     />
                     <IonRow>
                         {
-                            training
+                            trekking
                                 ? (
                                     <>
-                                        <IonCardHeader className='shadow shadow-secondary bg-secondary p-2'>
-                                            <h2 className='text-base font-semibold text-white text-center m-0! py-1'>{formatDate(training.start_date.toString())}
+                                        <IonCardHeader className='ion-text-center'>
+                                            <h2 className='text-base font-semibold text-secondary text-start'>{formatDate(trekking.start_date.toString())}
                                             </h2>
                                             <IonRow className='w-full'>
                                                 <IonButton
-                                                    size='small'
-                                                    href={training.url}
-                                                    color='light'
+                                                    href={trekking.url}
+                                                    fill='outline'
+                                                    color='secondary'
                                                     expand='block'
                                                     className='w-full flex items-center'>
                                                     <span className='text-secondary me-1'>Consulta més info al Web</span>
@@ -78,36 +73,36 @@ const ListsTrainingsPage: React.FC = () => {
                                             <div className='w-full flex flex-col items-center py-1'>
                                                 <div className='w-full flex justify-center items-start gap-4'>
                                                     <div className='flex items-start gap-1 py-1'>
-                                                        <MapPin className='size-6 text-white' />
-                                                        <p className='text-white'>{formatHour(training.start_date.toString()) + 'h'}</p>
+                                                        <MapPin className='size-6 text-primary' />
+                                                        <p className='text-primary'>{formatHour(trekking.start_date.toString()) + 'h'}</p>
                                                     </div>
                                                     <div className='flex items-start gap-1 py-1'>
-                                                        <MapIcon className='size-6 text-white' />
-                                                        <IonCardSubtitle className='my-0 text-white'>
-                                                            {formatUTF(training.venue.venue)}
+                                                        <MapIcon className='size-6 text-primary' />
+                                                        <IonCardSubtitle className='my-0 text-primary'>
+                                                            {formatUTF(trekking.venue.venue)}
                                                         </IonCardSubtitle>
                                                     </div>
                                                 </div>
-                                                <p className='my-0 text-sm text-center text-white'>
-                                                    {formatUTF(training.title)}
+                                                <p className='my-0 text-sm text-center text-primary'>
+                                                    {formatUTF(trekking.title)}
                                                 </p>
                                             </div>
                                         </IonCardHeader>
 
                                         <IonCardContent className='w-full p-0!'>
                                             {
-                                                !isLoadingTrainings &&
+                                                !isLoadingTrekkings &&
                                                 <IonRow className='w-full py-4'>
                                                     <AddToList
-                                                        list={'TRAINING_LIST'}
-                                                        event={training} />
+                                                        list={'TREKKING_LIST'}
+                                                        event={trekking} />
                                                 </IonRow>
                                             }
                                             <IonList className='w-full bg-transparent!' >
-                                                {!trainingsList
+                                                {!trekkingList
                                                     ? <Spinner />
-                                                    : trainingsList
-                                                        .filter((user: UserList) => +user.attributes.entreno_id === 7628)
+                                                    : trekkingList
+                                                        .filter((user: UserList) => user.attributes.entreno_id === trekking.id.toString())
                                                         .map((user: UserList, id: number) => (
                                                             <IonRow key={user.id} className={`bg-gradient-to-r ${id % 2 === 0 ? 'from-secondary/50' : 'from-white'} w-full ion-align-items-center ion-justify-content-between`}>
                                                                 <div className={`flex items-center gap-2 p-1`}>
@@ -119,11 +114,11 @@ const ListsTrainingsPage: React.FC = () => {
                                                                     </IonAvatar>
                                                                     <IonText className='text-primary font-semibold text-sm'>{formatName(user.attributes.username)}</IonText>
                                                                 </div>
-                                                                {
-                                                                    user.attributes.username === userLogged.username
-                                                                        ? <DeleteToList id={user.id} list={'TRAINING_LIST'} />
-                                                                        : null
-                                                                }
+                                                                {/* {
+                                                                                            user.attributes.username === userLogged?.username
+                                                                                                ? <DeleteToList id={user.id} list={'TRAINING_LIST'} />
+                                                                                                : null
+                                                                                        } */}
                                                             </IonRow>
                                                         ))}
                                             </IonList>
@@ -133,7 +128,7 @@ const ListsTrainingsPage: React.FC = () => {
                                 )
                                 : (
                                     <>
-                                        <p>No està planificat el proper entrenament</p>
+                                        <p>No està planificat el proper CaCo</p>
                                         <IonButton color='secondary' expand='block' className='w-full' onClick={() => router.push(APP_ROUTES.PRIVATE_LISTS, 'back')}>
                                             <div className='flex items-center gap-2'>
                                                 <ListStart className='size-8' color='white' />
@@ -152,4 +147,4 @@ const ListsTrainingsPage: React.FC = () => {
     };
 };
 
-export default ListsTrainingsPage;
+export default ListsTrekkingsPage;
