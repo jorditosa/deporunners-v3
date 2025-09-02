@@ -24,7 +24,6 @@ export type LoginApiResponse = {
 };
 
 export interface RegisterFormData {
-  username: string;
   email: string;
   confirmCode: number;
   password: string;

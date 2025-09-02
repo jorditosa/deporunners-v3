@@ -1,9 +1,10 @@
 import { AxiosResponse, isAxiosError } from 'axios';
-import { apiAuthClient, apiClient } from '../api/client';
+import { apiAuthClient, apiClient, apiWPClient } from '../api/client';
 import { ForgotFormData, JWTPayload, LoginApiResponse, LoginFormData, RegisterFormData, ResetFormData } from '../interfaces/auth.interface';
 import { jwtDecode } from "jwt-decode";
 import { isTokenValidFormat } from '../helpers/jwt';
 import { Preferences } from '@capacitor/preferences';
+import { WordPressUserApiResponse } from '../interfaces/wordpres.interface';
 
 export const authActions = {
 
@@ -30,18 +31,27 @@ export const authActions = {
         }
     },
 
-    createAccount: async (formData: RegisterFormData): Promise<AxiosResponse> => {
-        const { username, email, password } = formData;
+    createAccount: async (formData: RegisterFormData): Promise<RegisterFormData> => {
+        const { email, password } = formData;
         try {
-            const response = await apiClient.post(
+
+            const userInfo: WordPressUserApiResponse = await apiWPClient.get(`users?search=${email}&context=edit`);
+            if (!userInfo.data || userInfo.data.length === 0) {
+                throw new Error(`No s'ha trobat l'usuari: ${email}`);
+            }
+            const user = userInfo.data[0];
+
+            const { data } = await apiClient.post(
                 `auth/local/register`,
                 {
-                    username,
+                    username: user.name,
                     email,
                     password,
+                    soci_id: user.id,
+                    avatar: user.avatar_urls["48"],
                 }
             );
-            return response
+            return data
         } catch (error) {
             if (isAxiosError(error) && error.response) {
                 throw new Error(error.response.data.error.message ?? "Register error");

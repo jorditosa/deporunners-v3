@@ -24,18 +24,17 @@ export default function RegisterPage() {
         onError: (error) => {
             toast.error(error.message)
         },
-        onSuccess: (response) => {
-            console.log(response)
+        onSuccess: () => {
+            toast.success("Alta feta correctament, ja pots iniciar sessió")
             reset()
-            router.push(APP_ROUTES.REGISTER_CONFIRM, 'forward')
+            router.push(APP_ROUTES.LOGIN, 'forward')
         }
     })
 
     const submitForm = (formData: RegisterFormData) => {
-        console.log(formData)
         mutate(formData)
-
     }
+
     return (
         <PublicLayout>
             <IonRow>
