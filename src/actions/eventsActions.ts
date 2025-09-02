@@ -15,5 +15,19 @@ export const eventsActions = {
             }
             throw new Error('Error desconocido al obtener eventos');
         }
+    },
+
+    getAllRaces: async (): Promise<Event[]> => {
+        try {
+            const { data } = await apiOldClient.get(`events`);
+            const races = data.events
+            .filter((event: Event) => event.categories[0].name === 'Curses')
+            return races || []
+        } catch (error) {
+            if (isAxiosError(error) && error.response) {
+                throw new Error(error.response.data.error)
+            }
+            throw new Error('Error desconocido al obtener eventos');
+        }
     }
 }
