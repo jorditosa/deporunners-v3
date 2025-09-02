@@ -40,10 +40,8 @@ const ListsTrainingsPage: React.FC = () => {
     if (isLoadingTrainings || isLoadingEvents) return <Spinner />
     if (events) {
         const training = events.find((event: Event) =>
-            event.categories?.[0]?.name === 'Curses'
+            event.categories?.[0]?.name === 'Entrenaments'
         );
-
-        console.log(userLogged)
 
         return (
             <PrivateLayout
@@ -61,20 +59,9 @@ const ListsTrainingsPage: React.FC = () => {
                             training
                                 ? (
                                     <>
-                                        <IonCardHeader className='shadow shadow-secondary bg-secondary p-2'>
-                                            <h2 className='text-base font-semibold text-white text-center m-0! py-1'>{formatDate(training.start_date.toString())}
-                                            </h2>
-                                            <IonRow className='w-full'>
-                                                <IonButton
-                                                    size='small'
-                                                    href={training.url}
-                                                    color='light'
-                                                    expand='block'
-                                                    className='w-full flex items-center'>
-                                                    <span className='text-secondary me-1'>Consulta més info al Web</span>
-                                                    <Info className='size-6 text-secondary' />
-                                                </IonButton>
-                                            </IonRow>
+                                        <IonCardHeader className='shadow shadow-secondary bg-primary rounded-t p-2'>
+                                            <h3 className='text-base font-semibold text-white text-center m-0! py-1'>{formatDate(training.start_date.toString())}
+                                            </h3>
                                             <div className='w-full flex flex-col items-center py-1'>
                                                 <div className='w-full flex justify-center items-start gap-4'>
                                                     <div className='flex items-start gap-1 py-1'>
@@ -92,16 +79,25 @@ const ListsTrainingsPage: React.FC = () => {
                                                     {formatUTF(training.title)}
                                                 </p>
                                             </div>
+                                            <IonRow className='w-full'>
+                                                <IonButton
+                                                    size='small'
+                                                    href={training.url}
+                                                    color='light'
+                                                    expand='block'
+                                                    className='w-full flex items-center'>
+                                                    <span className='text-secondary me-1'>Consulta més info al Web</span>
+                                                    <Info className='size-6 text-secondary' />
+                                                </IonButton>
+                                            </IonRow>
                                         </IonCardHeader>
 
                                         <IonCardContent className='w-full p-0!'>
                                             {
                                                 !isLoadingTrainings &&
-                                                <IonRow className='w-full py-4'>
                                                     <AddToList
                                                         list={'TRAINING_LIST'}
                                                         event={training} />
-                                                </IonRow>
                                             }
                                             <IonList className='w-full bg-transparent!' >
                                                 {!trainingsList

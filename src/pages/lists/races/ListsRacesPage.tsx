@@ -7,55 +7,73 @@ import { Event } from '../../../interfaces/events.interface';
 import Heading from '../../../components/ui/Heading';
 import { formatDate } from '../../../helpers/formatDate';
 import { formatUTF } from '../../../helpers/formatUTF';
-import { Link, ZoomIn } from 'lucide-react';
+import { ZoomIn } from 'lucide-react';
+import { APP_ROUTES } from '../../../constants/endpoints';
+
+const EVENT_COLORS: Record<string, string> = {
+  'Entrenaments': 'primary',
+  'Caminades': 'secondary',
+  'Curses': 'success',
+  'Social': 'warning'
+};
 
 const ListsRacesPage: React.FC = () => {
     const router = useIonRouter();
     const queryClient = useQueryClient();
     const cachedEvents = queryClient.getQueryData<Event[]>(['events']);
-    const { data: racesData, isLoading: isLoadingEvents } = useQuery<Event[]>({
-        queryKey: ['races'],
-        queryFn: eventsActions.getAllRaces,
+    const { data: events, isLoading: isLoadingEvents } = useQuery<Event[]>({
+        queryKey: ['events'],
+        queryFn: eventsActions.getAllEvents,
         enabled: !cachedEvents,
         initialData: cachedEvents
     });
 
-    console.log(racesData)
-
-
     if (isLoadingEvents) return <Spinner />
-    if (racesData) {
+    if (events) {
         return (
             <PrivateLayout
-                title='Curses'
+                title='Calendari'
                 headerColor='secondary'
                 contentColor='light'
             >
                 <main className='container'>
                     <Heading
-                        title='Properes Curses'
+                        title='Calendari'
                         variant='h2'
                     />
                     <IonRow>
                         {
-                            racesData ?
+                            events ?
                                 (
-                                    racesData
-                                        .map((race: Event) => (
-                                            <IonItem key={race.id} className="w-full flex justify-between items-center" color='light'>
+                                    events
+                                        .map((event: Event) => (
+                                            <IonItem
+                                                key={event.id}
+                                                color='light'
+                                                className='w-full mb-1'
+                                            >
+                                                <div className="w-full flex flex-col items-start pb-1">
+                                                    <IonText 
+                                                    color={EVENT_COLORS[event.categories[0]?.name] || 'medium'} 
+                                                    className='w-full'>
+                                                        <h4 className="font-semibold line-clamp-1 my-1!">{formatUTF(event.title)}</h4>
+                                                        <div className='flex justify-between'>
+                                                            <p className="text-primary text-sm">{formatDate(event.start_date)}</p>
+                                                            <span className='block text-sm'>{event.categories[0].name}</span>
+                                                        </div>
+                                                    </IonText>
 
-                                                <IonText className='text-secondary py-2'>
-                                                    <h3 className="font-semibold line-clamp-1">{formatUTF(race.title)}</h3>
-                                                    <p className="text-primary text-sm">{formatDate(race.start_date)}</p>
-                                                </IonText>
-
-                                                <IonButton
-                                                    onClick={() => router.push(`/curses/${race.id}`, 'forward')}
-                                                    color='secondary'
-                                                    slot='end'
-                                                >
-                                                    <ZoomIn className='text-white size-6' />
-                                                </IonButton>
+                                                    <IonButton
+                                                        onClick={() => router.push(`${APP_ROUTES.PRIVATE_LISTS_RACES}/${event.id}`, 'forward')}
+                                                        color={EVENT_COLORS[event.categories[0]?.name]}
+                                                        expand='full'
+                                                        fill='solid'
+                                                        className='w-full flex flex-col justify-between'
+                                                    >
+                                                        <span className='capitalize text-white me-2'>Llistes i Info</span>
+                                                        <ZoomIn className='text-white size-6' />
+                                                    </IonButton>
+                                                </div>
                                             </IonItem>
                                         )))
                                 : (

@@ -6,7 +6,7 @@ import {
   IonTabButton,
   IonTabs
 } from '@ionic/react';
-import { ClipboardList, Home, ShoppingCart, User } from 'lucide-react';
+import { CalendarArrowDown, Home, ShoppingCart, User } from 'lucide-react';
 
 import PrivateHome from '../pages/privatehome/PrivateHome';
 import ListsPage from '../pages/lists/ListsPage';
@@ -16,6 +16,7 @@ import ListsTrainingsPage from '../pages/lists/training/ListsTrainingsPage';
 import ProfilePage from '../pages/profile/ProfilePage';
 import ListsRacesPage from '../pages/lists/races/ListsRacesPage';
 import ListsTrekkingsPage from '../pages/lists/trekking/ListsTrekkingsPage';
+import ListsPageEvent from '../pages/lists/ListsPageEvent';
 
 const PrivateRoutes: React.FC = () => (
   <IonTabs>
@@ -23,6 +24,7 @@ const PrivateRoutes: React.FC = () => (
       <Switch>
         <Route exact path={APP_ROUTES.PRIVATE_HOME} component={PrivateHome} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS} component={ListsPage} />
+        <Route exact path={`${APP_ROUTES.PRIVATE_LISTS}/:id`} component={ListsPageEvent} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS_TRAININGS} component={ListsTrainingsPage} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS_TREKKINGS} component={ListsTrekkingsPage} />
         <Route exact path={APP_ROUTES.PRIVATE_LISTS_RACES} component={ListsRacesPage} />
@@ -38,7 +40,7 @@ const PrivateRoutes: React.FC = () => (
         <IonLabel color='light'>Inici</IonLabel>
       </IonTabButton>
       <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS} className='bg-secondary'>
-        <ClipboardList className='size-10 p-1 text-white'/>
+        <CalendarArrowDown className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Llistes</IonLabel>
       </IonTabButton>
       <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP} className='bg-secondary'>

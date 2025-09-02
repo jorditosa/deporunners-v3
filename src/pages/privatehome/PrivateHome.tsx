@@ -2,12 +2,13 @@ import './privatehome.css';
 import { useQuery } from '@tanstack/react-query';
 import { eventsActions } from '../../actions/eventsActions';
 import Calendar from '../../components/events/calendar/CalendarSwiper';
-import { Calendar1, Newspaper } from 'lucide-react';
+import { Calendar1, Handshake, Newspaper } from 'lucide-react';
 import { postsActions } from '../../actions/postsActions';
 import Posts from '../../components/posts/Posts';
 import Spinner from '../../components/ui/Spinner';
 import PrivateLayout from '../PrivateLayout';
 import Heading from '../../components/ui/Heading';
+import { IonButton } from '@ionic/react';
 
 const PrivateHome: React.FC = () => {
   const { data: events, isLoading: isLoadingEvents } = useQuery({
@@ -48,6 +49,22 @@ const PrivateHome: React.FC = () => {
         />
 
         <Posts posts={posts} />
+
+        <Heading
+          title="patrocinadors"
+          variant="h1"
+          icon={Handshake}
+          iconSize={12}
+        />
+
+        <IonButton
+        color='secondary'
+        expand='block'
+        size='large'
+        onClick={() => window.open('https://deporunners.cat/patrocinadors/', '_blank')}
+        >
+          <span className='text-white capitalize text-base'>Veure beneficis del Club</span>
+        </IonButton>
 
       </main>
     </PrivateLayout>

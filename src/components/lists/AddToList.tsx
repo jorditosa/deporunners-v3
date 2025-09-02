@@ -66,7 +66,7 @@ const AddToList: React.FC<Props> = ({ list, event }) => {
   return (
     <form noValidate onSubmit={handleSubmit(handleIn)} className="w-full">
       <IonButton
-        color="primary"
+        color="secondary"
         expand="block"
         type='submit'
       >
@@ -75,7 +75,7 @@ const AddToList: React.FC<Props> = ({ list, event }) => {
             <Spinner />
           ) : (
             <>
-              <span className="me-1">M'hi apunto!</span>
+              <span className="me-1 text-white">M'hi apunto!</span>
               <FilePen className="size-6 text-white" />
             </>
           )}
