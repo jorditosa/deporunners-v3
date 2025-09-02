@@ -11,7 +11,7 @@ const Carnet: React.FC<CarnetProps> = ({user}) => {
   if (!user) return
   return (
     <IonCard
-      className="w-full bg-gradient-to-b from-primary via-primary to-tertiary text-white m-0 y-2"
+      className="w-full bg-gradient-to-b from-primary via-primary to-secondary text-white m-0 y-2"
       color='light'
     >
       <IonRow className='mx-4'>
@@ -20,14 +20,14 @@ const Carnet: React.FC<CarnetProps> = ({user}) => {
       <IonCardHeader className='p-0'>
         <IonCardTitle>
           <IonCardTitle className='ion-text-center text-xl m-0'>{user.username}</IonCardTitle>
-          <IonCardSubtitle className='ion-text-center text-base mt-1 font-semibold lowercase'>
+          <IonCardSubtitle className='ion-text-center text-sm mt-1 font-semibold lowercase'>
             {user.email}
           </IonCardSubtitle>
         </IonCardTitle>
       </IonCardHeader>
       <IonCardContent className='relative'>
         <IonText className='flex justify-between'>
-          <p className='ion-text-start ion-padding-top text-2xl uppercase font-semibold'>
+          <p className='ion-text-start ion-padding-top text-2xl uppercase font-bold'>
             Temporada {new Date().getFullYear()}
           </p>
           <p className='ion-text-end ion-padding-top'>

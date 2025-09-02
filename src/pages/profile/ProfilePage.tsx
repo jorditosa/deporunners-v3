@@ -16,15 +16,13 @@ const ProfilePage: React.FC = () => {
       contentColor='secondary'
     >
       <main className='container flex flex-col gap-4'>
-
-
         <Carnet
           user={data}
         />
         <IonCard color='light' className='ion-padding'>
           <IonRow className='flex items-center justify-between gap-2'>
-            <p>Nom:  <span className='font-bold text-secondary text-base'>{data.username}</span></p>
-            <FilePenLine className='text-secondary size-6' />
+            <p>Nom:  <span className='font-bold text-primary text-base'>{data.username}</span></p>
+            <FilePenLine className='text-primary size-6' />
           </IonRow>
         </IonCard>
         <IonCard color='light' className='ion-padding'>

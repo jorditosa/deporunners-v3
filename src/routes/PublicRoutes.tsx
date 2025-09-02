@@ -5,6 +5,7 @@ import RegisterPage from '../pages/register/RegisterPage';
 import ConfirmRegisterPage from '../pages/register/ConfirmRegisterPage';
 import ForgotPassword from '../pages/forgot-password/ForgotPassword';
 import { APP_ROUTES } from '../constants/endpoints';
+import ResetPassword from '../pages/reset-password/ResetPassword';
 
 
 const PublicRoutes: React.FC = () => (
@@ -14,7 +15,7 @@ const PublicRoutes: React.FC = () => (
       <Route exact path={APP_ROUTES.REGISTER} component={RegisterPage} />
       <Route exact path={APP_ROUTES.PRIVATE_SHOP} component={ConfirmRegisterPage} />
       <Route exact path={APP_ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
-      <Route exact path={APP_ROUTES.RESET_PASSWORD} component={ForgotPassword} />
+      <Route exact path={APP_ROUTES.RESET_PASSWORD} component={ResetPassword} />
       <Route path={APP_ROUTES.PUBLIC_HOME} component={PublicHome} />
     </Switch>
   </>

@@ -1,12 +1,11 @@
 import { AxiosResponse, isAxiosError } from 'axios';
 import { apiAuthClient, apiClient } from '../api/client';
-import { ForgotFormData, JWTPayload, LoginApiResponse, LoginFormData, RegisterFormData } from '../interfaces/auth.interface';
+import { ForgotFormData, JWTPayload, LoginApiResponse, LoginFormData, RegisterFormData, ResetFormData } from '../interfaces/auth.interface';
 import { jwtDecode } from "jwt-decode";
 import { isTokenValidFormat } from '../helpers/jwt';
 import { Preferences } from '@capacitor/preferences';
 
 export const authActions = {
-
 
     login: async (formData: LoginFormData): Promise<LoginApiResponse> => {
         const { email, password } = formData;
@@ -31,13 +30,15 @@ export const authActions = {
         }
     },
 
-    createAccount: async (formData: Pick<RegisterFormData, 'email' | 'password' | 'repeatPassword'>): Promise<AxiosResponse> => {
-        const { email, password, repeatPassword } = formData;
+    createAccount: async (formData: RegisterFormData): Promise<AxiosResponse> => {
+        const { username, email, password } = formData;
         try {
             const response = await apiClient.post(
-                `auth/local?filters[email][$eq]=${email}?populate=*`,
+                `auth/local/register`,
                 {
-                    email
+                    username,
+                    email,
+                    password,
                 }
             );
             return response
@@ -55,7 +56,8 @@ export const authActions = {
             const response = await apiClient.post(
                 `auth/local?filters[email][$eq]=${email}?populate=*`,
                 {
-                    email
+                    email,
+                    confirmCode
                 }
             );
             return response
@@ -74,6 +76,26 @@ export const authActions = {
                 `auth/forgot-password`,
                 {
                     email
+                }
+            );
+            return response
+        } catch (error) {
+            if (isAxiosError(error) && error.response) {
+                throw new Error(error.response.data.error.message ?? "Forgot password error");
+            }
+            throw error
+        }
+    },
+
+    resetPassword: async (formData: ResetFormData): Promise<AxiosResponse> => {
+        const { code, password, repeatPassword } = formData;
+        try {
+            const response = await apiClient.post(
+                `auth/reset-password`,
+                {
+                    code,
+                    password,
+                    passwordConfirmation: repeatPassword
                 }
             );
             return response
