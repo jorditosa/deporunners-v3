@@ -1,25 +1,25 @@
-export interface Training {
+export interface ListItem {
   id: number;
-  attributes: TrainingAttributes;
+  attributes: ListAttributes;
 }
 
-interface TrainingAttributes {
+interface ListAttributes {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  username: string;
+  name: string;
   date: string;
   avatar: string;
-  entreno_id: string;
+  cursa_id: string;
   hash_id: string;
 }
 
 export interface ListAddingForm {
   data: {
-    username?: string;
+    name?: string;
     avatar?: string;
     date: string;
-    entreno_id: string;
+    cursa_id: string;
     hash_id: string;
   };
 }

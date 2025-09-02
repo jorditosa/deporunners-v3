@@ -1,7 +1,7 @@
-import { IonButton, IonItem, IonRow, IonText, useIonRouter } from "@ionic/react";
+import { IonButton, IonCard, IonCol, IonRow, IonText, useIonRouter } from "@ionic/react";
 import { eventsActions } from "../../actions/eventsActions";
 import { useQueryClient, useQuery } from "@tanstack/react-query";
-import { ZoomIn } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Spinner from "../../components/ui/Spinner";
 import { APP_ROUTES } from "../../constants/endpoints";
 import { formatDate } from "../../helpers/formatDate";
@@ -13,8 +13,8 @@ import { Event } from "../../interfaces/events.interface";
 
 const EVENT_COLORS: Record<string, string> = {
   'Entrenaments': 'primary',
-  'Caminades': 'secondary',
-  'Curses': 'success',
+  'Caminades': 'medium',
+  'Curses': 'danger',
   'Social': 'warning'
 };
 
@@ -48,34 +48,36 @@ const ListsPage: React.FC = () => {
                                 (
                                     events
                                         .map((event: Event) => (
-                                            <IonItem
+                                            <IonCol 
                                                 key={event.id}
-                                                color='light'
-                                                className='w-full mb-1'
+                                                size="12"
+                                                className={`w-full shadow shadow-black rounded my-1`}
+                                            
                                             >
-                                                <div className="w-full flex flex-col items-start pb-1">
+                                                <IonCard 
+                                                color={EVENT_COLORS[event.categories[0]?.name] || 'medium'} 
+                                                className="w-full flex flex-col items-start">
                                                     <IonText 
                                                     color={EVENT_COLORS[event.categories[0]?.name] || 'medium'} 
                                                     className='w-full'>
-                                                        <h4 className="font-semibold line-clamp-1 my-1!">{formatUTF(event.title)}</h4>
-                                                        <div className='flex justify-between'>
-                                                            <p className="text-primary text-sm">{formatDate(event.start_date)}</p>
-                                                            <span className='block text-sm'>{event.categories[0].name}</span>
+                                                        <h4 className="font-semibold line-clamp-1 my-1! p-1 text-white  truncate">{formatUTF(event.title)}</h4>
+                                                        <div className='flex items-center justify-between p-1'>
+                                                            <p className="text-base text-white">{formatDate(event.start_date)}</p>
+                                                            <span className='block text-xs font-bold bg-white p-1 rounded-2xl'>Categoria: {event.categories[0].name}</span>
                                                         </div>
                                                     </IonText>
 
                                                     <IonButton
                                                         onClick={() => router.push(`${APP_ROUTES.PRIVATE_LISTS}/${event.id}`, 'forward')}
-                                                        color={EVENT_COLORS[event.categories[0]?.name]}
+                                                        color='light'
                                                         expand='full'
-                                                        fill='solid'
                                                         className='w-full flex flex-col justify-between'
                                                     >
-                                                        <span className='capitalize text-white me-2'>Llistes i Info</span>
-                                                        <ZoomIn className='text-white size-6' />
+                                                        <span className='capitalize me-2'>Llistes i Info</span>
+                                                        <ExternalLink className='size-6' />
                                                     </IonButton>
-                                                </div>
-                                            </IonItem>
+                                                </IonCard>
+                                            </IonCol>
                                         )))
                                 : (
                                     <Spinner />

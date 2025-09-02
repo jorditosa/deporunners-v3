@@ -1,87 +1,68 @@
-import { IonButton } from "@ionic/react";
+import { IonButton, IonSpinner } from "@ionic/react";
 import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FilePen } from "lucide-react";
 import { hashNames } from "../../helpers/hashNames";
 import { listsActions } from "../../actions/listsActions";
-import Spinner from "../ui/Spinner";
 import { Event } from "../../interfaces/events.interface";
 import { useForm } from "react-hook-form";
 import { ListAddingForm } from "../../interfaces/lists.interface";
 
 
 interface Props {
-  list: string;
   event: Event;
 }
 
-const AddToList: React.FC<Props> = ({ list, event }) => {
+const AddToList: React.FC<Props> = ({ event }) => {
   const { data: user } = useAuth()
+  const queryClient = useQueryClient();
   const { id } = event
   const { handleSubmit } = useForm<ListAddingForm>({
     defaultValues: {
       data: {
-        username: user.username,
+        name: user.username,
         avatar: user.avatar,
-        date: new Date().toISOString(),
-        entreno_id: id.toString(),
+        cursa_id: id.toString(),
         hash_id: hashNames(user?.username + id.toString()),
       }
     }
   })
 
-  const { mutate: addTraining, isPending: isPendingAddTraining, isError: isErrorAddingTraining } = useMutation({
-    mutationFn: listsActions.addTraining,
-    onError: (error) => {
-      toast.error(error.message)
-    },
+  const { mutate: addToList, isPending, isError } = useMutation({
+    mutationFn: listsActions.addToList,
     onSuccess: () => {
-      toast.success("Apuntat/da al proper Entreno ✌️!")
-    }
-  })
-  const { mutate: addTrekking, isPending: isPendingAddTreking, isError: isErrorAddingTreking } = useMutation({
-    mutationFn: listsActions.addTrekking,
-    onError: (error) => {
-      toast.error(error.message)
-    },
-    onSuccess: () => {
-      toast.success("Apuntat/da al proper CaCo ✌️!")
-    }
-  })
+      toast.success("Apuntat/da ✌️!")
+      queryClient.invalidateQueries({ queryKey: ['list'] });
 
+    }
+  })
 
   const handleIn = async (formData: ListAddingForm) => {
-
-    if (list === 'TRAINING_LIST') {
-      addTraining(formData)
-    }
-
-    if (list === 'TREKKING_LIST') {
-      addTrekking(formData)
-    }
+      addToList(formData)
   }
 
   return (
     <form noValidate onSubmit={handleSubmit(handleIn)} className="w-full">
       <IonButton
         color="secondary"
-        expand="block"
+        expand="full"
         type='submit'
+        className="border-t"
       >
-        {isPendingAddTraining || isPendingAddTreking
+        {isPending
           ? (
-            <Spinner />
+              <IonSpinner color='light' />
           ) : (
             <>
-              <span className="me-1 text-white">M'hi apunto!</span>
-              <FilePen className="size-6 text-white" />
+              <span className="m-1 text-white">M'hi apunto!</span>
+              <FilePen className={isError ? "size-6 text-red-500" : "size-6 text-white"} />
             </>
           )}
       </IonButton>
-      {(isErrorAddingTraining || isErrorAddingTreking) && (
-        <p className="ion-text-center text-red-500 text-lg">Ei!, ja estàs apuntat/da</p>
+      {(isError) && (
+        <p className="text-red-500 text-base text-center">Ei!, ja estàs apuntat/da</p>
       )}
     </form>
 
