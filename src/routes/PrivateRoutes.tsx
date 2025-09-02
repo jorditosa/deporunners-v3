@@ -9,35 +9,38 @@ import {
 import { ClipboardList, Home, ShoppingCart, User } from 'lucide-react';
 
 import PrivateHome from '../pages/privatehome/PrivateHome';
-import Tab4 from '../pages/profile/Tab4';
 import ListsPage from '../pages/lists/ListsPage';
 import ShopPage from '../pages/shop/ShopPage';
+import { APP_ROUTES } from '../constants/endpoints';
+import ListsTrainingsPage from '../pages/lists/training/ListsTrainingsPage';
+import ProfilePage from '../pages/profile/ProfilePage';
 
 const PrivateRoutes: React.FC = () => (
   <IonTabs>
     <IonRouterOutlet>
       <Switch>
-        <Route exact path="/app/dashboard" component={PrivateHome} />
-        <Route exact path="/app/lists" component={ListsPage} />
-        <Route path="/app/shop" component={ShopPage} />
-        <Route path="/app/profile" component={Tab4} />
+        <Route exact path={APP_ROUTES.PRIVATE_HOME} component={PrivateHome} />
+        <Route exact path={APP_ROUTES.PRIVATE_LISTS} component={ListsPage} />
+        <Route exact path={APP_ROUTES.PRIVATE_LISTS_TRAININGS} component={ListsTrainingsPage} />
+        <Route path={APP_ROUTES.PRIVATE_SHOP} component={ShopPage} />
+        <Route path={APP_ROUTES.PRIVATE_PROFILE} component={ProfilePage} />
       </Switch>
     </IonRouterOutlet>
     
     <IonTabBar slot="bottom" color='secondary' className='h-16 border-t-2 border-primary'>
-      <IonTabButton tab="dashboard" href="/app/dashboard" className='bg-secondary'>
+      <IonTabButton tab="dashboard" href={APP_ROUTES.PRIVATE_HOME} className='bg-secondary'>
         <Home className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Inici</IonLabel>
       </IonTabButton>
-      <IonTabButton tab="lists" href="/app/lists" className='bg-secondary'>
+      <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS} className='bg-secondary'>
         <ClipboardList className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Llistes</IonLabel>
       </IonTabButton>
-      <IonTabButton tab="shop" href="/app/shop" className='bg-secondary'>
+      <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP} className='bg-secondary'>
         <ShoppingCart className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Botiga</IonLabel>
       </IonTabButton>
-      <IonTabButton tab="profile" href="/app/profile" className='bg-secondary'>
+      <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE} className='bg-secondary'>
         <User className='size-10 p-1 text-white'/>
         <IonLabel color='light'>Perfil</IonLabel>
       </IonTabButton>

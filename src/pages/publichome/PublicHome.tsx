@@ -1,35 +1,49 @@
-import { IonButton, IonCol, IonRow } from '@ionic/react';
-import { Link } from 'react-router-dom';
+import { IonButton, IonCol, IonRow, useIonRouter } from '@ionic/react';
 import PublicLayout from '../PublicLayout';
+import { APP_ROUTES } from '../../constants/endpoints';
 
 const PublicHome: React.FC = () => {
+    const router = useIonRouter();
+
     return (
         <PublicLayout>
             <IonRow >
                 <main className='container'>
                     <IonCol>
-                        <Link to={'/login'}>
-                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
+                        <IonButton
+                            color='light'
+                            expand='full'
+                            className='flex items-center mb-4 italic text-base'
+                            onClick={() => router.push(APP_ROUTES.LOGIN, 'forward')}>
+                            <p className='text-secondary'>
                                 Iniciar Sessió
-                            </IonButton>
-                        </Link>
+                            </p>
+                        </IonButton>
 
                     </IonCol>
 
                     <IonCol>
-                        <Link to={'/register'}>
-                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
-                                Primera vegada
-                            </IonButton>
-                        </Link>
+                        <IonButton
+                            color='light'
+                            expand='full'
+                            className='flex items-center mb-4 italic text-base'
+                            onClick={() => router.push(APP_ROUTES.REGISTER, 'forward')}>
+                            <p className='text-secondary'>
+                                Primara vegada
+                            </p>
+                        </IonButton>
                     </IonCol>
 
                     <IonCol>
-                        <Link to={'/forgot-password'}>
-                            <IonButton color='light' expand='full' className='flex items-center mb-4'>
-                                Has oblidat la password?
-                            </IonButton>
-                        </Link>
+                        <IonButton
+                            color='light'
+                            expand='full'
+                            className='flex items-center mb-4 italic text-base'
+                            onClick={() => router.push(APP_ROUTES.FORGOT_PASSWORD, 'forward')}>
+                            <p className='text-secondary'>
+                                Recuperar contrasenya
+                            </p>
+                        </IonButton>
                     </IonCol>
                 </main>
             </IonRow>

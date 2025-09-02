@@ -8,6 +8,7 @@ import { FilePenLine } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
+import { APP_ROUTES } from '../../constants/endpoints'
 
 export default function RegisterPage() {
     const router = useIonRouter()
@@ -26,7 +27,7 @@ export default function RegisterPage() {
         onSuccess: (response) => {
             console.log(response)
             reset()
-            router.push("/register-confirm")
+            router.push(APP_ROUTES.REGISTER_CONFIRM, 'forward')
         }
     })
 
@@ -52,11 +53,12 @@ export default function RegisterPage() {
 
                             <IonCardContent>
                                 <form onSubmit={handleSubmit(submitForm)} noValidate>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Email"
                                             type="email"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("email", {
                                                 required: "L'email és obligatori",
                                             })}
@@ -68,11 +70,12 @@ export default function RegisterPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Password"
                                             type="password"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("password", {
                                                 required: "El password és obligatori",
                                                 minLength: {
@@ -90,11 +93,12 @@ export default function RegisterPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Repeteix Password"
                                             type="text"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("repeatPassword", {
                                                 required: "El password és obligatori",
                                                 minLength: {
@@ -129,7 +133,7 @@ export default function RegisterPage() {
                         </IonCard>
                     </IonRow>
                     <IonRow>
-                        <Link to={'/login'} className='w-full my-4'>
+                        <Link to={APP_ROUTES.LOGIN} className='w-full my-4'>
                             <IonButton expand='full' color='light' fill='clear'>
                                 Ja tens compte?
                             </IonButton>

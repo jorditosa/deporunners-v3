@@ -1,6 +1,9 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonContent, IonPage, useIonRouter } from "@ionic/react";
 import { ReactNode } from "react";
 import HeaderHome from "../components/Header/HeaderHome";
+import { useAuth } from "../hooks/useAuth";
+import { APP_ROUTES } from "../constants/endpoints";
+import Spinner from "../components/ui/Spinner";
 
 interface PrivateLayoutProps {
   children: ReactNode;
@@ -17,7 +20,12 @@ export default function PrivateLayout({
   contentColor,
   className = ""
 }: PrivateLayoutProps) {
-  return (
+  const router = useIonRouter();
+  const {data, isLoading: isLoadingUser, isError} = useAuth()
+
+  if (isError) router.push(APP_ROUTES.PUBLIC_HOME)
+  if (isLoadingUser) return <Spinner />
+  if (data) return (
     <IonPage className={className}>
       {showHeader && (
         <HeaderHome />

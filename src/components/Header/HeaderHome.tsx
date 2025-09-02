@@ -17,7 +17,7 @@ const HeaderHome: React.FC = () => {
                     title="Visita la web"
                 >
                     <ExternalLink
-                        className='size-10 text-white'
+                        className='size-8 text-white'
                     />
                 </a>
 

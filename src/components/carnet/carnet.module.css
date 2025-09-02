@@ -1,0 +1,8 @@
+.carnet {
+    --ion-background-color: linear-gradient(#232e4f25 0%, rgba(255, 255, 255, 0) 100%);
+    background-image: url("/bg-login-1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+  }

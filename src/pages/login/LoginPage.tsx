@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import PublicLayout from '../PublicLayout'
-import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonInputPasswordToggle, IonButton, IonSpinner } from '@ionic/react'
+import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonInputPasswordToggle, IonButton, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { LoginFormData } from '../../interfaces/auth.interface'
 import Heading from '../../components/ui/Heading'
@@ -8,8 +8,10 @@ import { LogIn } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
+import { APP_ROUTES } from '../../constants/endpoints'
 
 export default function LoginPage() {
+    const router = useIonRouter();
     const { handleSubmit, register, formState: { errors }, reset } = useForm<LoginFormData>({
         defaultValues: {
             email: '',
@@ -22,8 +24,9 @@ export default function LoginPage() {
             toast.error(error.message)
         },
         onSuccess: () => {
-            toast.error("Login correcte")
+            toast.success("Login correcte")
             reset()
+            router.push(APP_ROUTES.PRIVATE_HOME, 'forward')
         }
     })
 
@@ -48,11 +51,12 @@ export default function LoginPage() {
 
                             <IonCardContent>
                                 <form onSubmit={handleSubmit(submitForm)} noValidate>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Email"
                                             type="email"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("email", {
                                                 required: "L'email és obligatori",
                                             })}
@@ -64,11 +68,12 @@ export default function LoginPage() {
                                             </span>
                                         )}
                                     </div>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Password"
                                             type="password"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("password", {
                                                 required: "El password és obligatori",
                                                 minLength: {
@@ -102,7 +107,7 @@ export default function LoginPage() {
                         </IonCard>
                     </IonRow>
                     <IonRow>
-                        <Link to={'/forgot-password'} className='w-full my-4'>
+                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
                             <IonButton expand='full' color='light' fill='clear'>
                                 Has oblidat contrasenya?
                             </IonButton>

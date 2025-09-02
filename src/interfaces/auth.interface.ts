@@ -1,3 +1,8 @@
+export interface JWTPayload {
+    id: number;
+    iat: number;
+    exp: number;
+}
 
 
 export interface LoginFormData {
@@ -6,10 +11,17 @@ export interface LoginFormData {
 }
 
 export type LoginApiResponse = {
-  data: unknown | null;
-  error: unknown | null;
+  jwt: string;
+  user: {
+    id: number;
+    username: string;
+    email: string;
+    confirmed?: boolean;
+    blocked?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+  };
 };
-
 
 export interface RegisterFormData {
     email: string;

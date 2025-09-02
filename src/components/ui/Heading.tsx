@@ -28,7 +28,7 @@ export default function Heading({
 
     return (
         <div className={`flex items-center justify-start gap-4 py-4 ${className}`}>
-            <HeadingTag className={`${headingClasses[variant]} text-secondary`}>
+            <HeadingTag className={`${headingClasses[variant]} text-secondary italic`}>
                 {title}
             </HeadingTag>
             {Icon && (

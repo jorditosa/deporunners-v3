@@ -1,21 +1,28 @@
 import { AxiosResponse, isAxiosError } from 'axios';
-import { apiClient } from '../api/client';
-import { ForgotFormData, LoginApiResponse, LoginFormData, RegisterFormData } from '../interfaces/auth.interface';
+import { apiAuthClient, apiClient } from '../api/client';
+import { ForgotFormData, JWTPayload, LoginApiResponse, LoginFormData, RegisterFormData } from '../interfaces/auth.interface';
+import { jwtDecode } from "jwt-decode";
+import { isTokenValidFormat } from '../helpers/jwt';
+import { Preferences } from '@capacitor/preferences';
 
 export const authActions = {
 
 
-    login: async (formData: LoginFormData): Promise<AxiosResponse<LoginApiResponse>> => {
-        const {email, password} = formData;
+    login: async (formData: LoginFormData): Promise<LoginApiResponse> => {
+        const { email, password } = formData;
         try {
-            const response = await apiClient.post<LoginApiResponse>(
+            const { data } = await apiClient.post<LoginApiResponse>(
                 `auth/local?filters[email][$eq]=${email}?populate=*`,
                 {
-                    identifier:email,
+                    identifier: email,
                     password: password
                 }
             );
-            return response
+            await Preferences.set({
+                key: 'depotoken',
+                value: data.jwt
+            })
+            return data;
         } catch (error) {
             if (isAxiosError(error) && error.response) {
                 throw new Error(error.response.data.error.message ?? "Login error");
@@ -25,7 +32,7 @@ export const authActions = {
     },
 
     createAccount: async (formData: Pick<RegisterFormData, 'email' | 'password' | 'repeatPassword'>): Promise<AxiosResponse> => {
-        const {email, password, repeatPassword} = formData;
+        const { email, password, repeatPassword } = formData;
         try {
             const response = await apiClient.post(
                 `auth/local?filters[email][$eq]=${email}?populate=*`,
@@ -35,7 +42,7 @@ export const authActions = {
             );
             return response
         } catch (error) {
-             if (isAxiosError(error) && error.response) {
+            if (isAxiosError(error) && error.response) {
                 throw new Error(error.response.data.error.message ?? "Register error");
             }
             throw error
@@ -43,7 +50,7 @@ export const authActions = {
     },
 
     confirmAccount: async (formData: Pick<RegisterFormData, 'email' | 'confirmCode'>): Promise<AxiosResponse> => {
-        const {email, confirmCode} = formData;
+        const { email, confirmCode } = formData;
         try {
             const response = await apiClient.post(
                 `auth/local?filters[email][$eq]=${email}?populate=*`,
@@ -53,15 +60,15 @@ export const authActions = {
             );
             return response
         } catch (error) {
-             if (isAxiosError(error) && error.response) {
+            if (isAxiosError(error) && error.response) {
                 throw new Error(error.response.data.error.message ?? "Register error");
             }
             throw error
         }
     },
 
-     forgotPassword: async (formData: Pick<ForgotFormData, 'email' >): Promise<AxiosResponse> => {
-        const {email} = formData;
+    forgotPassword: async (formData: Pick<ForgotFormData, 'email'>): Promise<AxiosResponse> => {
+        const { email } = formData;
         try {
             const response = await apiClient.post(
                 `auth/local?filters[email][$eq]=${email}?populate=*`,
@@ -71,10 +78,40 @@ export const authActions = {
             );
             return response
         } catch (error) {
-             if (isAxiosError(error) && error.response) {
+            if (isAxiosError(error) && error.response) {
                 throw new Error(error.response.data.error.message ?? "Forgot password error");
             }
             throw error
+        }
+    },
+
+    getUser: async (token: string) => {
+        try {
+            if (!isTokenValidFormat(token)) {
+                localStorage.removeItem('depotoken');
+                throw new Error('Token expirado o mal formato');
+            }
+
+            const decoded = jwtDecode<JWTPayload>(token);
+            const userId = decoded.id;
+
+            if (!userId) {
+                throw new Error('Token no contiene ID de usuario válido');
+            }
+
+            const { data } = await apiAuthClient.get(`users/me`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            return data;
+
+        } catch (error) {
+            if (isAxiosError(error) && error.response) {
+                throw new Error(error.response.data.error);
+            }
+            throw error;
         }
     }
 }

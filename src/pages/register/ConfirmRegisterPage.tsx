@@ -47,15 +47,16 @@ export default function ConfirmRegisterPage() {
 
                             <IonCardContent>
                                 <form onSubmit={handleSubmit(submitForm)} noValidate>
-                                    <div className="form-group mb-2">
+                                    <div className="form-group mb-2 text-base">
                                         <IonInput
                                             color={"secondary"}
                                             label="Codi Alta"
                                             type="number"
+                                            className='border-b-2 border-secondary mb-1'
                                             {...register("confirmCode", {
                                                 required: "El codi de confirmació és obligatori",
                                                 minLength: {
-                                                    value: 6,
+                                                    value: 4,
                                                     message: "El Codi ha de tenir 4 caràcters"
                                                 }
                                             })}
