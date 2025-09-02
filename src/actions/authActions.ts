@@ -71,7 +71,7 @@ export const authActions = {
         const { email } = formData;
         try {
             const response = await apiClient.post(
-                `auth/local?filters[email][$eq]=${email}?populate=*`,
+                `auth/forgot-password`,
                 {
                     email
                 }
