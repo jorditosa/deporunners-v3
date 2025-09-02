@@ -29,13 +29,13 @@ jobs:
     - name: Run tests
       run: npm run test:e2e --if-present
 
+    - name: Build app
+      run: npm run build
+      
     - name: Check Capacitor configuration
       run: |
         npx cap doctor
         echo "✅ Capacitor configurado correctamente"
-      
-    - name: Build app
-      run: npm run build
       
     - name: Test dev server startup
       run: |
