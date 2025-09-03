@@ -7,11 +7,12 @@ import Heading from '../../components/ui/Heading'
 import { CheckCheck } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
+import { APP_ROUTES } from '../../constants/endpoints'
 
 export default function ConfirmRegisterPage() {
     const { handleSubmit, register, formState: { errors }, reset } = useForm<RegisterFormData>({
         defaultValues: {
-            confirmCode: 0
+            confirmCode: ''
         }
     })
     const { mutate, isPending } = useMutation({
@@ -48,17 +49,13 @@ export default function ConfirmRegisterPage() {
                             <IonCardContent>
                                 <form onSubmit={handleSubmit(submitForm)} noValidate>
                                     <div className="form-group mb-2 text-base">
+                                        <label htmlFor="code" className='text-xs font-semibold uppercase text-secondary'>Codi confirmació</label>
                                         <IonInput
                                             color={"secondary"}
-                                            label="Codi Alta"
-                                            type="number"
-                                            className='border-b-2 border-secondary mb-1'
+                                            type="text"
+                                            fill='outline'
                                             {...register("confirmCode", {
                                                 required: "El codi de confirmació és obligatori",
-                                                minLength: {
-                                                    value: 4,
-                                                    message: "El Codi ha de tenir 4 caràcters"
-                                                }
                                             })}
                                             required
                                         />
@@ -79,18 +76,19 @@ export default function ConfirmRegisterPage() {
                                             }
                                         </IonButton>
                                     </IonRow>
+                                    <IonRow>
+                                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
+                                            <IonButton expand='full' color='secondary' fill='clear'>
+                                                No tens el Codi de confirmació?
+                                            </IonButton>
+                                        </Link>
+                                    </IonRow>
 
                                 </form>
                             </IonCardContent>
                         </IonCard>
                     </IonRow>
-                    <IonRow>
-                        <Link to={'/forgot-landing'} className='w-full my-4'>
-                            <IonButton expand='full' color='light' fill='clear'>
-                                No tens el Codi de confirmació?
-                            </IonButton>
-                        </Link>
-                    </IonRow>
+
                 </IonCol>
             </IonRow>
         </PublicLayout>

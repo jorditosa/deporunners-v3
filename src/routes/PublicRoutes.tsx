@@ -13,7 +13,7 @@ const PublicRoutes: React.FC = () => (
     <Switch>
       <Route exact path={APP_ROUTES.LOGIN} component={LoginPage} />
       <Route exact path={APP_ROUTES.REGISTER} component={RegisterPage} />
-      <Route exact path={APP_ROUTES.PRIVATE_SHOP} component={ConfirmRegisterPage} />
+      <Route exact path={APP_ROUTES.REGISTER_CONFIRM} component={ConfirmRegisterPage} />
       <Route exact path={APP_ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
       <Route exact path={APP_ROUTES.RESET_PASSWORD} component={ResetPassword} />
       <Route path={APP_ROUTES.PUBLIC_HOME} component={PublicHome} />

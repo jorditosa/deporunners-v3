@@ -52,11 +52,11 @@ export default function LoginPage() {
                             <IonCardContent>
                                 <form onSubmit={handleSubmit(submitForm)} noValidate>
                                     <div className="form-group mb-2 text-base">
+                                        <label htmlFor="email" className='text-xs font-semibold uppercase text-secondary'>Email</label>
                                         <IonInput
                                             color={"secondary"}
-                                            label="Email"
                                             type="email"
-                                            className='border-b-2 border-secondary mb-1'
+                                            fill='outline'
                                             {...register("email", {
                                                 required: "L'email és obligatori",
                                             })}
@@ -69,11 +69,11 @@ export default function LoginPage() {
                                         )}
                                     </div>
                                     <div className="form-group mb-2 text-base">
+                                        <label htmlFor="password" className='text-xs font-semibold uppercase text-secondary'>Contrasenya</label>
                                         <IonInput
                                             color={"secondary"}
-                                            label="Password"
                                             type="password"
-                                            className='border-b-2 border-secondary mb-1'
+                                            fill='outline'
                                             {...register("password", {
                                                 required: "El password és obligatori",
                                                 minLength: {

@@ -15,7 +15,7 @@ const HeaderHome: React.FC = () => {
         <IonHeader>
             <IonToolbar color='secondary' className='w-full'>
 
-                <div className={`flex items-center justify-between ${isIOS ? 'pt-1' : 'pt-4'}`}>
+                <div className={`flex items-center justify-between ${isIOS ? 'pt-1' : 'pt-2'}`}>
                     <IonImg src="/logo.png" className='w-52 ps-1' />
                     <IonButton
                         type='button'

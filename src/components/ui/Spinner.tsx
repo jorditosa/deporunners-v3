@@ -5,13 +5,13 @@ export default function Spinner() {
     <IonPage>
         <IonContent color='secondary'>
             <IonRow>
-                <div className='w-full flex justify-center mt-20'>
+                <div className='relative w-screen flex justify-center mt-32'>
                     <IonSpinner
                     name='lines-sharp'
                     color='light'
                     style={{ 
-                        width: '80px', 
-                        height: '80px',
+                        width: '70px', 
+                        height: '70px',
                     }}
                     />
                 </div>

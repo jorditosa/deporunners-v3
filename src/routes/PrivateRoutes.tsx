@@ -26,7 +26,7 @@ const PrivateRoutes: React.FC = () => (
       </Switch>
     </IonRouterOutlet>
     
-    <IonTabBar slot="bottom" color='secondary' className='h-16 pb-2'>
+    <IonTabBar slot="bottom" color='secondary' className='h-14 pb-2 border-t-2 border-white'>
       <IonTabButton tab="dashboard" href={APP_ROUTES.PRIVATE_HOME} className='bg-secondary'>
         <Home className='size-10 p-1 text-white'/>
       </IonTabButton>
