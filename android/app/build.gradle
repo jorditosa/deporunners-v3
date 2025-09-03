@@ -16,15 +16,12 @@ android {
         }
     }
 
-    // AÑADIR ESTA SECCIÓN DE SIGNING
     signingConfigs {
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
+            storeFile file('upload-keystore.jks')
+            storePassword '6Y&*7wfW!6*NdX&g'
+            keyAlias 'upload'
+            keyPassword '6Y&*7wfW!6*NdX&g'
         }
     }
 
