@@ -14,7 +14,7 @@ export default function Heading({
     title,
     variant,
     icon: Icon,
-    iconSize = 12,
+    iconSize = 10,
     className = '',
     iconClassName = ''
 }: Props) {
@@ -27,13 +27,13 @@ export default function Heading({
     const HeadingTag = variant as keyof JSX.IntrinsicElements;
 
     return (
-        <div className={`flex items-center justify-start gap-4 py-4 ${className}`}>
+        <div className={`flex items-center justify-start gap-2 py-2 ${className}`}>
             {Icon && (
                 <Icon
                     className={`size-${iconSize} text-secondary ${iconClassName}`}
                 />
             )}
-            <HeadingTag className={`${headingClasses[variant]} text-secondary italic`}>
+            <HeadingTag className={`${headingClasses[variant]} text-secondary`}>
                 {title}
             </HeadingTag>
         </div>

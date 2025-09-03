@@ -30,7 +30,7 @@ const Posts = ({ posts }: Props) => {
               <SwiperSlide key={post.id}
 
               >
-                <IonCard key={post.id} className='text-start cursor-grab text-white mb-10 min-h-[72px] bg-light mx-1 p-4' color='secondary'>
+                <IonCard key={post.id} className='text-start cursor-grab bg-gradient-to-br from-secondary to-primary text-white mb-10 min-h-[72px] bg-light mx-1 p-4' color='secondary'>
                     <a
                       target='_blank'
                       href={post.link}

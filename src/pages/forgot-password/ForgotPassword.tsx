@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form'
 import PublicLayout from '../PublicLayout'
-import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonButton, IonSpinner, useIonRouter } from '@ionic/react'
+import { IonInput, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { ForgotFormData } from '../../interfaces/auth.interface'
-import Heading from '../../components/ui/Heading'
+import { KeyRound, Mail, AlertCircle } from 'lucide-react'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
@@ -34,62 +34,94 @@ export default function ForgotPassword() {
 
     return (
         <PublicLayout>
-            <IonRow>
-                <IonCol size="12" className="p-4">
-                    <IonRow className="block m-auto max-w-lg">
-                        <IonCard color={"light"} className="block shadow-md shadow-slate-600 rounded-xl bg-white">
-                            <IonCardHeader className='container'>
-                                <Heading
-                                    title="recuperar Contrasenya"
-                                    variant="h1"
-                                    iconSize={12}
-                                />
-                            </IonCardHeader>
+            <main className='min-h-screen '>
+                <div className='container mx-auto px-4 py-8'>
 
-                            <IonCardContent>
-                                <form onSubmit={handleSubmit(submitForm)} noValidate>
-                                    <div className="form-group mb-2 text-base">
-                                        <label htmlFor="email" className='text-xs font-semibold uppercase text-secondary'>Email</label>
+
+                    <div className='max-w-md mx-auto'>
+
+                        {/* Forgot Password Form Card */}
+                        <div className='bg-white rounded-2xl shadow-xl p-6 mb-6'>
+                            <div className='mb-8 space-y-4'>
+                                <div className='space-y-2'>
+                                    <h1 className='text-3xl font-bold text-secondary'>
+                                        recuperar Contrasenya
+                                    </h1>
+                                    <p className='text-gray-600'>
+                                        T'enviarem instruccions per restablir-la
+                                    </p>
+                                </div>
+                            </div>
+                            <form onSubmit={handleSubmit(submitForm)} noValidate className='space-y-6'>
+
+                                {/* Email Field */}
+                                <div className='space-y-2'>
+                                    <label htmlFor="email" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
+                                        <Mail className='h-4 w-4 text-secondary' />
+                                        Correu electrònic
+                                    </label>
+                                    <div className='relative'>
                                         <IonInput
                                             color={"secondary"}
                                             type="email"
                                             fill='outline'
+                                            placeholder='Introdueix el teu email registrat'
+                                            className={`transition-all duration-300 ${errors.email ? 'border-red-300' : 'border-gray-200 focus:border-orange-500'
+                                                }`}
                                             {...register("email", {
                                                 required: "L'email és obligatori",
+                                                pattern: {
+                                                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                                    message: "Format d'email no vàlid"
+                                                }
                                             })}
                                             required
                                         />
-                                        {errors.email && (
-                                            <span className="text-red-500">
-                                                Ups, l'email no és correcte.
-                                            </span>
-                                        )}
                                     </div>
+                                    {errors.email && (
+                                        <div className="flex items-center gap-2 text-red-500 text-sm">
+                                            <AlertCircle className='h-4 w-4' />
+                                            <span>{errors.email.message}</span>
+                                        </div>
+                                    )}
+                                </div>
 
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={isPending}
+                                    className='w-full bg-gradient-to-br from-secondary to-primary text-white py-4 px-6  font-semibold hover:from-orange-700 hover:to-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none rounded! p-2!'
+                                >
+                                    {isPending ? (
+                                        <div className='flex items-center justify-center gap-2'>
+                                            <IonSpinner color='light' />
+                                            <span>Enviant instruccions...</span>
+                                        </div>
+                                    ) : (
+                                        <div className='flex items-center justify-center gap-2'>
+                                            <KeyRound className='size-5' />
+                                            <span>Enviar instruccions</span>
+                                        </div>
+                                    )}
+                                </button>
 
-                                    <IonRow>
-                                        <IonButton color="secondary" expand='full' type="submit" className='w-full'>
-                                            {
-                                                isPending
-                                                    ? <IonSpinner color='light' />
-                                                    : <span className='text-white'>Dona'm indicacions</span>
-                                            }
-                                        </IonButton>
-                                    </IonRow>
-                                    <IonRow>
-                                        <Link to={APP_ROUTES.REGISTER} className='w-full my-4'>
-                                            <IonButton expand='full' color='secondary' fill='clear'>
-                                                No estàs d'alta?
-                                            </IonButton>
-                                        </Link>
-                                    </IonRow>
-                                </form>
-                            </IonCardContent>
-                        </IonCard>
-                    </IonRow>
+                                {/* Register Link */}
+                                <div className='text-center'>
+                                    <Link
+                                        to={APP_ROUTES.REGISTER}
+                                        className='inline-flex items-center gap-2 text-secondary hover:text-orange-800 font-medium transition-colors duration-300'
+                                    >
+                                        <Mail className='h-4 w-4' />
+                                        <span>No estàs registrat? Crea un compte</span>
+                                    </Link>
+                                </div>
 
-                </IonCol>
-            </IonRow>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
         </PublicLayout>
     )
 }

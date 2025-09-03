@@ -35,7 +35,7 @@ export default function PublicLayout({
           <IonButton   
           fill='clear' 
           onClick={() => router.push('/', 'forward')}
-          className="py-12 bg-gradient-to-b from-secondary via-secondary w-full"
+          className="py-8 bg-gradient-to-b from-secondary via-secondary w-full"
           >
             <IonImg src="/logo.png" className='w-full' />
           </IonButton>

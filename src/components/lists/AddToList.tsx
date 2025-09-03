@@ -47,17 +47,18 @@ const AddToList: React.FC<Props> = ({ event }) => {
     <form noValidate onSubmit={handleSubmit(handleIn)} className="w-full">
       <IonButton
         color="secondary"
-        expand="full"
+        expand="block"
         type='submit'
-        className="border-t"
+        fill="clear"
+        className='flex w-full items-center gap-2 bg-gradient-to-br from-secondary bg-primary text-white rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl'
       >
         {isPending
           ? (
               <IonSpinner color='light' />
           ) : (
             <>
-              <span className="m-1 text-white">M'hi apunto!</span>
               <FilePen className={isError ? "size-6 text-red-500" : "size-6 text-white"} />
+              <span className="ms-2 text-white">M'hi apunto!</span>
             </>
           )}
       </IonButton>
