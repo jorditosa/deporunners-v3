@@ -6,8 +6,12 @@ export const eventsActions = {
 
 
     getAllEvents: async (): Promise<Event[]> => {
+                    console.log('🍎 Direct fetch starting...');
+
         try {
             const { data } = await apiOldClient.get(`events`);
+            console.log('🍎 Fetch response:', data);
+
             return data.events || []
         } catch (error) {
             if (isAxiosError(error) && error.response) {

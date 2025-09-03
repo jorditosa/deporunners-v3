@@ -1,5 +1,8 @@
 import { IonButton, IonContent, IonImg, IonPage, useIonRouter } from "@ionic/react";
 import { ReactNode } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { APP_ROUTES } from "../constants/endpoints";
+import Spinner from "../components/ui/Spinner";
 
 interface PublicLayoutProps {
   children: ReactNode;
@@ -12,7 +15,11 @@ export default function PublicLayout({
   className = ""
 }: PublicLayoutProps) {
   const router = useIonRouter();
-  return (
+  const {data, isLoading: isLoadingUser} = useAuth()
+
+  if (isLoadingUser) return <Spinner />
+  if (data) router.push(APP_ROUTES.PRIVATE_HOME)
+  if (!data) return (
     <IonPage className={className} id="home-page">
       <IonContent color='secondary' className="container">
         <div 

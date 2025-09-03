@@ -1,4 +1,4 @@
-import { IonButton, IonHeader, IonImg, IonToolbar, useIonRouter } from '@ionic/react';
+import { IonButton, IonHeader, IonImg, IonToolbar, isPlatform, useIonRouter } from '@ionic/react';
 import React from 'react';
 import { LogOut } from 'lucide-react';
 import { Preferences } from '@capacitor/preferences';
@@ -9,12 +9,13 @@ import { APP_ROUTES } from '../../constants/endpoints';
 const HeaderHome: React.FC = () => {
     const queryClient = useQueryClient();
     const router = useIonRouter();
+    const isIOS = isPlatform('ios')
 
     return (
         <IonHeader>
             <IonToolbar color='secondary' className='w-full'>
 
-                <div className='flex items-center justify-between pt-5'>
+                <div className={`flex items-center justify-between ${isIOS ? 'pt-1' : 'pt-4'}`}>
                     <IonImg src="/logo.png" className='w-52 ps-1' />
                     <IonButton
                         type='button'

@@ -1,9 +1,25 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'deporunners-v3',
-  webDir: 'dist'
+  appId: 'cat.deporunners',
+  appName: 'Deporunners',
+  webDir: 'dist',
+  server: {
+    androidScheme: 'https'
+  },
+  plugins: {
+    App: {  
+      appUrlOpen: {
+        schemes: ['deporunners']
+      }
+    },
+    CapacitorCookies: {
+      enabled: true
+    },
+    CapacitorHttp: {
+      enabled: true,
+    },
+  }
 };
 
 export default config;
