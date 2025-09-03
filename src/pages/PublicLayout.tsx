@@ -43,8 +43,8 @@ export default function PublicLayout({
         <div className="relative z-10">
           {children}
         </div>
-        <footer className="w-full flex justify-center items-center fixed bottom-4 z-20">
-          <span className="block text-white font-semibold">
+        <footer className="w-full flex justify-center items-center fixed bottom-6 z-20 bg-secondary/75 p-1">
+          <span className="block text-white font-semibold ">
             &copy; Club Esportiu Deporunners {new Date().getFullYear()}
           </span>
         </footer>
