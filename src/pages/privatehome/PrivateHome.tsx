@@ -34,7 +34,7 @@ const PrivateHome: React.FC = () => {
           title="el Calendari"
           variant="h1"
           icon={Calendar1}
-          iconSize={12}
+          iconSize={10}
         />
 
         <Calendar
@@ -45,7 +45,7 @@ const PrivateHome: React.FC = () => {
           title="notícies"
           variant="h1"
           icon={Newspaper}
-          iconSize={12}
+          iconSize={10}
         />
 
         <Posts posts={posts} />
@@ -54,16 +54,16 @@ const PrivateHome: React.FC = () => {
           title="patrocinadors"
           variant="h1"
           icon={Handshake}
-          iconSize={12}
+          iconSize={10}
         />
 
         <IonButton
         color='secondary'
         expand='block'
-        size='large'
+        className='text-start'
         onClick={() => window.open('https://deporunners.cat/patrocinadors/', '_blank')}
         >
-          <span className='text-white capitalize text-base'>Veure beneficis del Club</span>
+          <span className='text-white capitalize'>Veure beneficis del Club</span>
         </IonButton>
 
       </main>

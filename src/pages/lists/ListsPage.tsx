@@ -70,10 +70,10 @@ const ListsPage: React.FC = () => {
                                             return (
                                                 <IonCard
                                                     key={event.id}
-                                                    className={`w-full my-1 border border-secondary`}
+                                                    className={`w-full my-1 shadow-xl rounded`}
                                                 >
                                                     <div
-                                                        className="relative overflow-hidden min-h-[110px]"
+                                                        className="relative overflow-hidden min-h-[110px] rounded"
                                                         style={{
                                                             backgroundImage: `url(${event.image.url})`,
                                                             backgroundSize: 'cover',
@@ -81,23 +81,23 @@ const ListsPage: React.FC = () => {
                                                             backgroundRepeat: 'no-repeat'
                                                         }}
                                                     >
-                                                        <div className={`absolute inset-0 ${colorScheme.overlay}`}></div>
+                                                        <div className={`absolute inset-0 rounded ${colorScheme.overlay}`}></div>
 
-                                                        <div className={`relative z-10 ${colorScheme.text} p-2`}>
+                                                        <div className={`relative z-10 ${colorScheme.text} p-2 rounded`}>
                                                             <h4 className="font-semibold text-base line-clamp-1 truncate mb-2 mt-1!">
                                                                 {formatUTF(event.title)}
                                                             </h4>
                                                             <div className='flex items-center justify-between'>
-                                                                <span className={`text-xs px-2 py-1 rounded ${colorScheme.badge}`}>
+                                                                <span className={`text-xs px-1 py-0.5 font-semibold rounded ${colorScheme.badge}`}>
                                                                     {event.categories[0].name}
                                                                 </span>
-                                                                <p className="text-sm opacity-95 font-medium">
+                                                                <p className="text-base font-medium">
                                                                     {formatDate(event.start_date)}
                                                                 </p>
                                                             </div>
                                                         </div>
 
-                                                        <div className="relative z-10">
+                                                        <div className="relative z-10 rounded">
                                                             <IonButton
                                                                 onClick={() => router.push(`${APP_ROUTES.PRIVATE_LISTS}/${event.id}`, 'forward')}
                                                                 color='light'

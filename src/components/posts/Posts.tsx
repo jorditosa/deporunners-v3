@@ -1,4 +1,4 @@
-import { IonCard, IonCardHeader, IonCardSubtitle } from '@ionic/react';
+import { IonCard, IonCardSubtitle } from '@ionic/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Posts = ({ posts }: Props) => {
-
+  console.log(posts)
   return (
     <>
       <Swiper
@@ -30,19 +30,19 @@ const Posts = ({ posts }: Props) => {
               <SwiperSlide key={post.id}
 
               >
-                <IonCard key={post.id} className='text-start cursor-grab text-whitew mb-8 h-[60px] bg-secondary mx-1' color='light'>
-                  <IonCardHeader className='p-4'>
+                <IonCard key={post.id} className='text-start cursor-grab text-white mb-10 min-h-[72px] bg-light mx-1 p-4' color='secondary'>
                     <a
                       target='_blank'
                       href={post.link}
                     >
 
                       <div className='flex justify-center items-center gap-2 text-white'>
-                        <IonCardSubtitle className='w-10/12 text-white font-sans text-base truncate'>"{post.title.rendered}"</IonCardSubtitle>
-                        <SquareArrowOutUpRight className='size-6 w-2/12' />
+                        <IonCardSubtitle className='w-10/12 text-white font-sans text-sm font-semibold line-clamp-2'>
+                        {post.title.rendered}
+                        </IonCardSubtitle>
+                        <SquareArrowOutUpRight className='size-8' />
                       </div>
                     </a>
-                  </IonCardHeader>
                 </IonCard>
               </SwiperSlide>
             ))

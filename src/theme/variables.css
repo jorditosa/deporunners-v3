@@ -19,6 +19,22 @@ body {
   @apply w-full mx-auto p-4
 }
 
+.mySwiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(134, 135, 184, 0.5);
+  border-radius: 50%;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background: var(--color-secondary);
+  width: 8px;
+  height: 8px;
+  transform: scale(1.5);
+}
+
 
 :root {
 	--font-family-roboto: Roboto, sans-serif;
