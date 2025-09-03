@@ -1,4 +1,4 @@
-name: Test Ionic App
+name: Test Deporunners App
 
 on:
   push:
