@@ -11,7 +11,7 @@ const Carnet: React.FC<CarnetProps> = ({user}) => {
   if (!user) return
   return (
     <IonCard
-      className="w-full bg-gradient-to-b from-primary via-primary to-slate-900 text-white m-0 y-2"
+      className="w-full bg-gradient-to-b from-primary via-primary to-secondary text-white m-0 y-2"
       color='light'
     >
       <IonRow className='mx-4'>

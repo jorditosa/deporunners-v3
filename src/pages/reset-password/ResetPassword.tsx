@@ -125,18 +125,18 @@ export default function ResetPassword() {
                                             }
                                         </IonButton>
                                     </IonRow>
-
+                                    <IonRow>
+                                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
+                                            <IonButton expand='full' color='secondary' fill='clear'>
+                                                No has rebut el codi?
+                                            </IonButton>
+                                        </Link>
+                                    </IonRow>
                                 </form>
                             </IonCardContent>
                         </IonCard>
                     </IonRow>
-                    <IonRow>
-                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
-                            <IonButton expand='full' color='light' fill='clear'>
-                                No has rebut el codi?
-                            </IonButton>
-                        </Link>
-                    </IonRow>
+
                 </IonCol>
             </IonRow>
         </PublicLayout>

@@ -145,5 +145,23 @@ export const authActions = {
             }
             throw error;
         }
+    },
+
+    deleteUser: async (id: string): Promise<AxiosResponse> => {
+        try {
+            const respone = await apiClient.delete(`${import.meta.env.VITE_API_BASE_URL}users/${id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`
+                    }
+                });
+            return respone;
+        } catch (error) {
+            if (isAxiosError(error) && error.response) {
+                throw new Error(error.response.data.error);
+            }
+            throw error;
+        }
     }
 }

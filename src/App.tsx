@@ -29,6 +29,7 @@ import './theme/variables.css';
 
 import PrivateRoutes from './routes/PrivateRoutes';
 import PublicRoutes from './routes/PublicRoutes';
+import { NotFound } from './pages/not-found/NotFound';
 
 setupIonicReact();
 
@@ -39,7 +40,10 @@ const App: React.FC = () => (
         <Switch>
           <Route path="/app" component={PrivateRoutes} />
 
+          <Route exact path="/" component={PublicRoutes} />
           <Route path="/" component={PublicRoutes} />
+
+          <Route component={NotFound} />
         </Switch>
       </IonRouterOutlet>
     </IonReactRouter>

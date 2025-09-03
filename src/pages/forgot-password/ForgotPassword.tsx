@@ -54,9 +54,9 @@ export default function ForgotPassword() {
                                             label="Email"
                                             type="email"
                                             className='border-b-2 border-secondary mb-1'
-                                            {...register("email", { 
+                                            {...register("email", {
                                                 required: "L'email és obligatori",
-                                             })}
+                                            })}
                                             required
                                         />
                                         {errors.email && (
@@ -65,7 +65,7 @@ export default function ForgotPassword() {
                                             </span>
                                         )}
                                     </div>
-                                
+
 
                                     <IonRow>
                                         <IonButton color="secondary" expand='full' type="submit" className='w-full'>
@@ -76,18 +76,18 @@ export default function ForgotPassword() {
                                             }
                                         </IonButton>
                                     </IonRow>
-
+                                    <IonRow>
+                                        <Link to={APP_ROUTES.REGISTER} className='w-full my-4'>
+                                            <IonButton expand='full' color='secondary' fill='clear'>
+                                                No estàs d'alta?
+                                            </IonButton>
+                                        </Link>
+                                    </IonRow>
                                 </form>
                             </IonCardContent>
                         </IonCard>
                     </IonRow>
-                    <IonRow>
-                        <Link to={APP_ROUTES.REGISTER} className='w-full my-4'>
-                            <IonButton expand='full' color='light' fill='clear'>
-                                No estàs d'alta?
-                            </IonButton>
-                        </Link>
-                    </IonRow>
+
                 </IonCol>
             </IonRow>
         </PublicLayout>

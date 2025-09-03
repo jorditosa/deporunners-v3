@@ -116,7 +116,6 @@ export default function RegisterPage() {
                                         )}
                                     </div>
 
-
                                     <IonRow>
                                         <IonButton color="secondary" expand='full' type="submit" className='w-full'>
                                             {
@@ -126,17 +125,16 @@ export default function RegisterPage() {
                                             }
                                         </IonButton>
                                     </IonRow>
-
+                                    <IonRow>
+                                        <Link to={APP_ROUTES.LOGIN} className='w-full my-4'>
+                                            <IonButton expand='full' color='secondary' fill='clear'>
+                                                Ja tens compte?
+                                            </IonButton>
+                                        </Link>
+                                    </IonRow>
                                 </form>
                             </IonCardContent>
                         </IonCard>
-                    </IonRow>
-                    <IonRow>
-                        <Link to={APP_ROUTES.LOGIN} className='w-full my-4'>
-                            <IonButton expand='full' color='light' fill='clear'>
-                                Ja tens compte?
-                            </IonButton>
-                        </Link>
                     </IonRow>
                 </IonCol>
             </IonRow>

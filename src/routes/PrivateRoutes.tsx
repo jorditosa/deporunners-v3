@@ -1,6 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
 import {
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -27,22 +26,18 @@ const PrivateRoutes: React.FC = () => (
       </Switch>
     </IonRouterOutlet>
     
-    <IonTabBar slot="bottom" color='secondary' className='h-16 border-t-2 border-primary'>
+    <IonTabBar slot="bottom" color='secondary' className='h-16 pb-3'>
       <IonTabButton tab="dashboard" href={APP_ROUTES.PRIVATE_HOME} className='bg-secondary'>
         <Home className='size-10 p-1 text-white'/>
-        <IonLabel color='light'>Inici</IonLabel>
       </IonTabButton>
       <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS} className='bg-secondary'>
         <CalendarRange className='size-10 p-1 text-white'/>
-        <IonLabel color='light'>Llistes</IonLabel>
       </IonTabButton>
       <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP} className='bg-secondary'>
         <ShoppingCart className='size-10 p-1 text-white'/>
-        <IonLabel color='light'>Botiga</IonLabel>
       </IonTabButton>
       <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE} className='bg-secondary'>
         <User className='size-10 p-1 text-white'/>
-        <IonLabel color='light'>Perfil</IonLabel>
       </IonTabButton>
     </IonTabBar>
   </IonTabs>

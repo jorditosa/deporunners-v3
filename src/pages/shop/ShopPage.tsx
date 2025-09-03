@@ -28,6 +28,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-dona-tuga-2025/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -45,6 +46,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-home-tuga-2025-2/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -62,6 +64,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-tirants-home-tuga-2025/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -79,6 +82,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/pantalo-running-tuga-2025/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -96,6 +100,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-home-tuga-2025/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -113,6 +118,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-tirants-home-tuga-2025-2/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>
@@ -130,6 +136,7 @@ const ShopPage: React.FC = () => {
               expand='full'
               onClick={() => window.open('https://deporunners.cat/producto/samarreta-tecnica-tirants-dona-tuga-2025/', '_blank')}
               >
+                <span className='text-secondary me-2'>Comprar</span>
                 <ShoppingCart className='size-6 text-secondary' />
               </IonButton>
             </div>

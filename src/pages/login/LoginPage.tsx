@@ -101,18 +101,18 @@ export default function LoginPage() {
                                             }
                                         </IonButton>
                                     </IonRow>
-
+                                    <IonRow>
+                                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
+                                            <IonButton expand='full' color='secondary' fill='clear'>
+                                                Has oblidat contrasenya?
+                                            </IonButton>
+                                        </Link>
+                                    </IonRow>
                                 </form>
                             </IonCardContent>
                         </IonCard>
                     </IonRow>
-                    <IonRow>
-                        <Link to={APP_ROUTES.FORGOT_PASSWORD} className='w-full my-4'>
-                            <IonButton expand='full' color='light' fill='clear'>
-                                Has oblidat contrasenya?
-                            </IonButton>
-                        </Link>
-                    </IonRow>
+
                 </IonCol>
             </IonRow>
         </PublicLayout>

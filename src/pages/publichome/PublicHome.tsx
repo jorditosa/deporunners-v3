@@ -13,19 +13,20 @@ const PublicHome: React.FC = () => {
                         <IonButton
                             color='light'
                             expand='full'
+                            size='large'
                             className='flex items-center mb-4 italic text-base'
                             onClick={() => router.push(APP_ROUTES.LOGIN, 'forward')}>
                             <p className='text-secondary'>
                                 Iniciar Sessió
                             </p>
                         </IonButton>
-
                     </IonCol>
 
                     <IonCol>
                         <IonButton
                             color='light'
                             expand='full'
+                            size='large'
                             className='flex items-center mb-4 italic text-base'
                             onClick={() => router.push(APP_ROUTES.REGISTER, 'forward')}>
                             <p className='text-secondary'>
@@ -38,6 +39,7 @@ const PublicHome: React.FC = () => {
                         <IonButton
                             color='light'
                             expand='full'
+                            size='large'
                             className='flex items-center mb-4 italic text-base'
                             onClick={() => router.push(APP_ROUTES.FORGOT_PASSWORD, 'forward')}>
                             <p className='text-secondary'>

@@ -60,7 +60,7 @@ export default function ListsPageEvent() {
             list.filter((item: ListItem) => +item.attributes.cursa_id === +event.id)
               .map((item: ListItem, i: number) => (
                 <IonCol key={item.id} size='12'>
-                  <div className={`bg-gradient-to-r ${i % 2 !== 0 ? 'from-primary/25' : ''} p-1 flex items-center justify-between gap-1`}>
+                  <div className={`bg-gradient-to-r ${i % 2 !== 0 ? 'from-secondary/25' : ''} p-1 flex items-center justify-between gap-1`}>
                     <div className='flex items-center'>
                       <span className='block w-6 text-primary font-semibold'>{i + 1}</span>
                       <p className='text-primary text-sm font-semibold'>{item.attributes.name}</p>
@@ -74,7 +74,6 @@ export default function ListsPageEvent() {
           }
         </IonRow>
       </main>
-
 
     </PrivateLayout>
   )
