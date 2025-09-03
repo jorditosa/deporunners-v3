@@ -36,9 +36,11 @@ export const authActions = {
         try {
 
             const userInfo: WordPressUserApiResponse = await apiWPClient.get(`users?search=${email}&context=edit`);
+            console.log(userInfo)
             if (!userInfo.data || userInfo.data.length === 0) {
-                throw new Error(`No s'ha trobat l'usuari: ${email}`);
+                throw new Error(`No s'ha trobat l'usuari.`);
             }
+
             const user = userInfo.data[0];
 
             const { data } = await apiClient.post(
@@ -54,7 +56,13 @@ export const authActions = {
             return data
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error.message ?? "Register error");
+                const errorMessage = error.response.data.error.message;
+
+                if (errorMessage === "Email or Username are already taken") {
+                    throw new Error("Ja estàs d'alta a la App");
+                }
+
+                throw new Error(errorMessage ?? "Error de registre");
             }
             throw error
         }
