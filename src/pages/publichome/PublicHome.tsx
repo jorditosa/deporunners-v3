@@ -41,7 +41,7 @@ const PublicHome: React.FC = () => {
                         {actions.map((action, index) => (
                             <div
                                 key={index}
-                                className='bg-white rounded'
+                                className='bg-white rounded-xl! shadow! shadow-primary'
                             >
                                 <IonButton
                                     fill='clear'
