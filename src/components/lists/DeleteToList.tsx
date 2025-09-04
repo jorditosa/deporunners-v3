@@ -22,7 +22,6 @@ const DeleteToList: React.FC<Props> = ({ id }) => {
     }
   })
 
-
   const handleOut = (id: number) => {
       deleteList(id.toString())
   }

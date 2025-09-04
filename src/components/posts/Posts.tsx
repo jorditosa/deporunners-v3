@@ -25,17 +25,15 @@ const Posts = ({ posts }: Props) => {
       >
         {
           posts.map((post: Post) => (
-            <SwiperSlide key={post.id}
-
-            >
-              <IonCard key={post.id} className='text-start cursor-grab bg-gradient-to-br from-secondary to-primary text-white mb-10 min-h-[72px] bg-light p-4' color='secondary'>
+            <SwiperSlide key={post.id}>
+              <IonCard key={post.id} className='text-start cursor-grab bg-gradient-to-br from-secondary to-primary text-white mb-10 min-h-[80px] bg-light p-4 mx-1' color='secondary'>
                 <a
                   target='_blank'
                   href={post.link}
                 >
 
                   <div className='flex justify-center items-center gap-2 text-white'>
-                    <IonCardSubtitle className='w-10/12 text-white font-sans text-sm font-semibold line-clamp-2'>
+                    <IonCardSubtitle className='w-10/12 text-white font-sans text-base font-semibold line-clamp-2 capitalize'>
                       {post.title.rendered}
                     </IonCardSubtitle>
                     <BookOpenText className='size-6' />

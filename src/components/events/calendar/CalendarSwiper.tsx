@@ -26,31 +26,31 @@ const Calendar = ({ events }: Props) => {
       {
         events.map((event: Event) => (
           <SwiperSlide key={event.id}>
-            <IonCard className="card-modern text-light mb-10 h-[400px] mx-1">
-              <IonCardHeader className="h-[100px] p-4 bg-secondary">
-                <IonCardTitle className="flex items-center gap-4 font-semibold text-sm text-white">
+            <IonCard className="card-modern text-light mb-10 h-[380px] mx-1">
+              <IonCardHeader className="h-[100px] p-4 bg-gradient-to-br from-secondary to-primary">
+                <IonCardTitle className="flex items-center gap-2 font-semibold text-base text-white">
                   <div className='flex items-center gap-2'>
                     <Calendar1 className='size-5 text-white' />
                     {formatDate(event.start_date)}
                   </div>
-                  -
+                  <span>-</span>
                   <IonLabel className="font-semibold">
                     {formatHour(event.start_date) + ' h'}
                   </IonLabel>
                 </IonCardTitle>
                 <div className="card-content">
-                  <IonCardSubtitle className="card-subtitle text-sm text-white line-clamp-1 pt-1">
+                  <IonCardSubtitle className="card-subtitle text-base text-white line-clamp-1 pt-1 capitalize">
                     {formatUTF(event.title)}
                   </IonCardSubtitle>
                   <div className="flex items-center gap-2 py-1">
                     <MapPinIcon className='size-5 text-white' />
-                    <IonCardSubtitle className='text-white text-base'>
+                    <IonCardSubtitle className='text-white text-base capitalize'>
                       {formatUTF(event.venue.venue)}
                     </IonCardSubtitle>
                   </div>
                 </div>
               </IonCardHeader>
-              <IonImg src={event.image.url} alt="event picture" className="w-full h-[310px] object-cover object-top" />
+              <IonImg src={event.image.url} alt="event picture" className="w-full h-[285px] object-cover object-top" />
             </IonCard>
           </SwiperSlide>
         )
