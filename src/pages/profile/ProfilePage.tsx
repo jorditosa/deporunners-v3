@@ -81,7 +81,7 @@ const ProfilePage: React.FC = () => {
 
           {/* Carnet Section */}
           <div className='bg-white rounded-xl shadow-lg'>
-            <div className='flex items-center gap-3 mb-4 p-2'>
+            <div className='flex items-center gap-3 mb-4 px-4 pt-4'>
               <div className='bg-indigo-100 p-2 rounded-full'>
                 <Shield className='h-5 w-5 text-indigo-600' />
               </div>
@@ -148,7 +148,7 @@ const ProfilePage: React.FC = () => {
               
               <button
                 onClick={openDeleteModal}
-                className='w-full flex items-center justify-center gap-3 p-3! bg-red-50 hover:bg-red-100 text-red-700 rounded-lg font-medium transition-colors duration-300 border-2 border-red-200 hover:border-red-300'
+                className='w-full flex items-center justify-center gap-3 p-3! bg-red-50 hover:bg-red-100 text-red-700 rounded-lg! font-medium transition-colors duration-300 border-2 border-red-200 hover:border-red-300'
               >
                 <Trash className='size-5' />
                 <span>Eliminar el meu compte</span>

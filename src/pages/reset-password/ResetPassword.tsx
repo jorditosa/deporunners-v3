@@ -39,14 +39,10 @@ export default function ResetPassword() {
 
     return (
         <PublicLayout>
-            <main className='min-h-screen'>
+            <main className='min-h-full'>
                 <div className='container mx-auto px-4 py-8'>
 
-
                     <div className='max-w-md mx-auto'>
-
-
-
                         {/* Reset Password Form Card */}
                         <div className='bg-white rounded-2xl shadow-xl p-6 mb-6'>
                             {/* Header Section */}
@@ -164,7 +160,7 @@ export default function ResetPassword() {
                                 <button
                                     type="submit"
                                     disabled={isPending}
-                                    className='w-full bg-gradient-to-br from-secondary to-primary text-white py-4 px-6  font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none rounded! p-3!'
+                                    className='w-full bg-gradient-to-br from-secondary to-primary text-white py-4 px-6  font-semibold hover:from-purple-700 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none rounded! p-4!'
                                 >
                                     {isPending ? (
                                         <div className='flex items-center justify-center gap-2'>

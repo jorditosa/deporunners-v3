@@ -23,7 +23,7 @@ export default function PublicLayout({
     <IonPage className={className} id="home-page">
       <IonContent color='secondary' className="container">
         <div 
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 h-full"
           style={{
             backgroundImage: 'url(/public-background.png)',
             backgroundSize: 'cover',

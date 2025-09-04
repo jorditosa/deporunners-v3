@@ -162,10 +162,10 @@ const ListsPage: React.FC = () => {
                                     <SwiperSlide key={category} className="!w-auto">
                                         <button
                                             onClick={() => setSelectedCategory(category)}
-                                            className={`rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                                            className={`text-xs font-medium transition-all duration-300 whitespace-nowrap p-1! rounded! ${
                                                 selectedCategory === category
-                                                    ? 'bg-secondary text-white shadow-lg'
-                                                    : 'bg-gray-100 text-gray-700'
+                                                    ? 'bg-secondary text-white'
+                                                    : 'bg-white text-gray-700'
                                             }`}
                                         >
                                             {category === 'all' ? 'Tots' : category}
@@ -173,23 +173,6 @@ const ListsPage: React.FC = () => {
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
-                        </div>
-
-                        {/* Categories Grid for desktop */}
-                        <div className='hidden md:flex flex-wrap gap-2'>
-                            {categories.map(category => (
-                                <button
-                                    key={category}
-                                    onClick={() => setSelectedCategory(category)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                        selectedCategory === category
-                                            ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
-                                    }`}
-                                >
-                                    {category === 'all' ? 'Tots' : category}
-                                </button>
-                            ))}
                         </div>
                     </div>
 

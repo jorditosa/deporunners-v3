@@ -2,7 +2,7 @@ import './privatehome.css';
 import { useQuery } from '@tanstack/react-query';
 import { eventsActions } from '../../actions/eventsActions';
 import Calendar from '../../components/events/calendar/CalendarSwiper';
-import { Calendar1, Handshake, Newspaper, Star, ExternalLink } from 'lucide-react';
+import { Calendar1, Handshake, Newspaper, ExternalLink } from 'lucide-react';
 import { postsActions } from '../../actions/postsActions';
 import Posts from '../../components/posts/Posts';
 import Spinner from '../../components/ui/Spinner';
@@ -85,21 +85,14 @@ const PrivateHome: React.FC = () => {
 
         {/* Sponsors Section */}
         <section className='container mx-auto'>
-          <div className='bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl shadow-xl p-4 backdrop-blur-sm border border-orange-100 transform hover:shadow-2xl transition-all duration-500'>
+          <div className='bg-gradient-to-br from-blue-50 to-secondary/10 rounded-3xl shadow-xl p-4 backdrop-blur-sm transform hover:shadow-2xl transition-all duration-500'>
             <div className='flex items-center justify-between mb-4'>
               <Heading
                 title="patrocinadors"
                 variant="h1"
                 icon={Handshake}
                 iconSize={10}
-                className='text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600'
               />
-              <div className='hidden md:block'>
-                <div className='flex items-center gap-2 px-3 py-1 bg-orange-100 rounded-full text-orange-700 text-sm font-medium'>
-                  <Star className='h-4 w-4' />
-                  <span>Exclusiu</span>
-                </div>
-              </div>
             </div>
             
             <div className='space-y-6'>

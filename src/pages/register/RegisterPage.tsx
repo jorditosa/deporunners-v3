@@ -39,11 +39,10 @@ export default function RegisterPage() {
 
     return (
         <PublicLayout>
-            <main className='min-h-screen'>
+            <main className='min-h-full'>
                 <div className='container mx-auto px-4 py-8'>
 
                     <div className='max-w-md mx-auto'>
-
                         {/* Register Form Card */}
                         <div className='bg-white rounded-2xl shadow-xl p-6 mb-6'>
                             <div className='mb-8 space-y-4'>
@@ -157,7 +156,7 @@ export default function RegisterPage() {
                                 <button
                                     type="submit"
                                     disabled={isPending}
-                                    className='w-full bg-gradient-to-r from-secondary to-primary text-white py-4 px-6  font-semibold hover:from-green-700 hover:to-teal-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none p-2! rounded!'
+                                    className='w-full bg-gradient-to-r from-secondary to-primary text-white py-4 px-6  font-semibold hover:from-green-700 hover:to-teal-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none p-4! rounded!'
                                 >
                                     {isPending ? (
                                         <div className='flex items-center justify-center gap-2'>
@@ -176,7 +175,7 @@ export default function RegisterPage() {
                                 <div className='text-center'>
                                     <Link
                                         to={APP_ROUTES.LOGIN}
-                                        className='inline-flex items-center gap-2 text-secondary hover:text-green-800 font-medium transition-colors duration-300'
+                                        className='inline-flex items-center gap-2 text-secondary hover:text-blue-800 font-medium transition-colors duration-300'
                                     >
                                         <UserPlus className='size-5' />
                                         <span>Ja tens compte? Inicia sessió</span>
@@ -189,7 +188,7 @@ export default function RegisterPage() {
                         {/* Terms Notice */}
                         <div className='bg-gradient-to-r from-green-50 to-teal-50 rounded-2xl p-6 text-center border border-green-100'>
                             <div className='space-y-3'>
-                                <div className='flex items-center justify-center gap-2 text-green-700'>
+                                <div className='flex items-center justify-center gap-2 text-blue-700'>
                                     <Shield className='h-5 w-5' />
                                     <span className='font-semibold'>Informació important</span>
                                 </div>
