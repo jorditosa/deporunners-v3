@@ -76,7 +76,7 @@ const ShopPage: React.FC = () => {
         </div>
 
         {/* Stats Card */}
-        <div className='bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg p-4 text-white'>
+        <div className='bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg p-2 text-white'>
           <div className='flex items-center justify-between'>
             <div className='space-y-1'>
               <p className='text-indigo-100 text-sm'>Productes disponibles</p>
@@ -101,7 +101,7 @@ const ShopPage: React.FC = () => {
                   <IonImg
                     src={product.image}
                     alt={product.name}
-                    className='h-56 w-full object-cover group-hover:scale-110 transition-transform duration-500 object-cover'
+                    className='h-56 w-full group-hover:scale-110 transition-transform duration-500 object-cover'
                   />
                   
                   {/* Overlay gradient */}
@@ -110,7 +110,7 @@ const ShopPage: React.FC = () => {
                 </div>
 
                 {/* Product Info */}
-                <div className='p-4 space-y-3'>
+                <div className='p-2 space-y-3'>
                   <div className='space-y-1'>
                     <h3 className='font-bold text-gray-800 text-lg group-hover:text-indigo-600 transition-colors duration-300'>
                       {product.name}

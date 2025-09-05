@@ -101,7 +101,7 @@ const ProfilePage: React.FC = () => {
 
             <div className='space-y-3'>
               {/* User Info Card */}
-              <div className='p-4 bg-gray-50 rounded-lg'>
+              <div className='p-2 bg-gray-50 rounded-lg'>
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center gap-3'>
                     <User className='h-5 w-5 text-indigo-600' />
@@ -117,7 +117,7 @@ const ProfilePage: React.FC = () => {
               </div>
 
               {/* Events Count Card */}
-              <div className='p-4 bg-gray-50 rounded-lg'>
+              <div className='p-2 bg-gray-50 rounded-lg'>
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center gap-3'>
                     <Calendar className='h-5 w-5 text-purple-600' />
@@ -194,7 +194,7 @@ const ProfilePage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-3 p-4">
+                <div className="flex gap-3 p-2">
                   <IonButton
                     expand="block"
                     fill="outline"

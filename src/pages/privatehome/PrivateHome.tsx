@@ -37,7 +37,7 @@ const PrivateHome: React.FC = () => {
 
         {/* Calendar Section */}
         <section className='container mx-auto'>
-          <div className='bg-white rounded-3xl shadow-xl p-4 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
+          <div className='h-full bg-white rounded-3xl shadow-xl p-2 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
             <div className='flex items-center justify-between mb-4'>
               <Heading
                 title="el Calendari"
@@ -49,7 +49,7 @@ const PrivateHome: React.FC = () => {
             </div>
             
             <div className='relative'>
-              <div className='absolute inset-0 rounded'></div>
+              <div className='inset-0 rounded'></div>
               <Calendar events={events} />
             </div>
           </div>
@@ -57,23 +57,14 @@ const PrivateHome: React.FC = () => {
 
         {/* News Section */}
         <section className='container mx-auto'>
-          <div className='bg-white rounded-3xl shadow-xl p-4 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
+          <div className='bg-white rounded-3xl shadow-xl p-2 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
             <div className='flex items-center justify-between mb-4'>
               <Heading
                 title="notícies"
                 variant="h1"
                 icon={Newspaper}
                 iconSize={10}
-                className='text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600'
               />
-              <div className='hidden md:flex items-center gap-2 text-sm text-gray-500'>
-                <div className='flex space-x-1'>
-                  <div className='w-2 h-2 bg-blue-400 rounded-full animate-bounce'></div>
-                  <div className='w-2 h-2 bg-blue-400 rounded-full animate-bounce' style={{animationDelay: '0.1s'}}></div>
-                  <div className='w-2 h-2 bg-blue-400 rounded-full animate-bounce' style={{animationDelay: '0.2s'}}></div>
-                </div>
-                <span>Actualitzant...</span>
-              </div>
             </div>
             
             <div className='relative'>
@@ -102,7 +93,7 @@ const PrivateHome: React.FC = () => {
               
               {/* Enhanced Button */}
               <div className='relative group'>
-                <div className='absolute -inset-0.5 bg-gradient-to-br from-secondary to-primary rounded group-hover:opacity-100 transition duration-300'></div>
+                <div className='absolute -inset-0.5 bg-gradient-to-br from-secondary to-tertiary rounded group-hover:opacity-100 transition duration-300'></div>
                 <IonButton
                   expand='block'
                   fill='clear'
@@ -110,8 +101,8 @@ const PrivateHome: React.FC = () => {
                   onClick={() => window.open('https://deporunners.cat/patrocinadors/', '_blank')}
                 >
                   <div className='flex items-center justify-between w-full'>
-                    <span className='text-white capitalize font-semibold text-lg'>
-                      Veure beneficis del Club
+                    <span className='text-white capitalize font-semibold text-sm truncate'>
+                      Beneficis del Club
                     </span>
                     <div className='flex items-center gap-2'>
                       <ExternalLink className='size-6 text-white group-hover:translate-x-1 transition-transform duration-300' />

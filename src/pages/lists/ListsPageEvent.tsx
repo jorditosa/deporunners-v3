@@ -57,7 +57,7 @@ export default function ListsPageEvent() {
             </div>
           )}
 
-          <div className='p-4 space-y-4'>
+          <div className='p-2 space-y-4'>
             {/* Title (if no image) */}
             {!event.image && (
               <Heading
@@ -123,13 +123,13 @@ export default function ListsPageEvent() {
         </div>
 
         {/* Participants Section - SIMPLE LIST */}
-        <div className='bg-white rounded-xl shadow-lg p-4'>
+        <div className='bg-white rounded-xl shadow-lg p-2'>
           <div className='flex items-center justify-between mb-6'>
             <Heading
               title={`Llista de participants (${eventParticipants.length})`}
-              variant='h2'
+              variant='h3'
               icon={Users}
-              iconSize={6}
+              iconSize={5}
             />
           </div>
 

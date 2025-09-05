@@ -126,7 +126,7 @@ const ListsPage: React.FC = () => {
                     </div>
 
                     {/* Search Bar */}
-                    <div className='bg-white rounded-xl shadow-lg p-4'>
+                    <div className='bg-white rounded-xl shadow-lg p-2'>
                         <div className='relative'>
                             <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                                 <IonIcon icon={search} className='h-5 w-5 text-gray-400' />
@@ -142,7 +142,7 @@ const ListsPage: React.FC = () => {
                     </div>
 
                     {/* Filters Section */}
-                    <div className='bg-white rounded-xl shadow-lg p-4'>
+                    <div className='bg-white rounded-xl shadow-lg p-2'>
                         <div className='flex items-center gap-2 mb-3'>
                             <Filter className='size-6 text-secondary' />
                             <span className='font-semibold text-gray-800'>Filtrar per categoria</span>
@@ -177,7 +177,7 @@ const ListsPage: React.FC = () => {
                     </div>
 
                     {/* Stats Card */}
-                    <div className='bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg p-4 text-white'>
+                    <div className='bg-gradient-to-br from-secondary to-primary rounded-xl shadow-lg p-2 text-white'>
                         <div className='flex items-center justify-between'>
                             <div className='space-y-1'>
                                 <p className='text-white text-sm'>Esdeveniments trobats</p>
