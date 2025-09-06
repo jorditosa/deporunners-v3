@@ -2,6 +2,8 @@ import { IonButton, useIonRouter } from '@ionic/react';
 import PublicLayout from '../PublicLayout';
 import { APP_ROUTES } from '../../constants/endpoints';
 import { LogIn, UserPlus, KeyRound, ArrowRight } from 'lucide-react';
+import { useEffect } from 'react';
+import { Preferences } from '@capacitor/preferences';
 
 const PublicHome: React.FC = () => {
     const router = useIonRouter();
@@ -12,23 +14,41 @@ const PublicHome: React.FC = () => {
             subtitle: 'Accedeix al teu compte',
             icon: LogIn,
             route: APP_ROUTES.LOGIN,
-            gradient: 'from-secondary to-primary',
+            gradient: 'from-secondary to-secondary/60',
         },
         {
             title: 'Primera vegada',
             subtitle: 'Crea el teu compte nou',
             icon: UserPlus,
             route: APP_ROUTES.REGISTER,
-            gradient: 'from-secondary to-primary',
+            gradient: 'from-secondary to-secondary/60',
         },
         {
             title: 'Recuperar contrasenya',
             subtitle: 'Restableix el teu accés',
             icon: KeyRound,
             route: APP_ROUTES.FORGOT_PASSWORD,
-            gradient: 'from-secondary to-primary',
+            gradient: 'from-secondary to-secondary/60',
         }
     ];
+
+    useEffect(() => {
+        const checkOnBoardingDone = async () => {
+            try {
+                const onBoardingDone = await Preferences.get({
+                    key: 'deporunner-onboarding-done',
+                })
+
+                if (!onBoardingDone.value || onBoardingDone.value !== 'true') {
+                    router.push(APP_ROUTES.ONBOARDING, 'forward')
+                }
+            } catch (error) {
+                console.error('Error checking onboarding status:', error)
+                router.push(APP_ROUTES.ONBOARDING, 'forward')
+            }
+        }
+        checkOnBoardingDone()
+    }, [router])
 
     return (
         <PublicLayout>

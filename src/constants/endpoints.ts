@@ -1,5 +1,6 @@
 export const APP_ROUTES = {
     PUBLIC_HOME: "/",
+    ONBOARDING: "/onboarding",
     LOGIN: "/login",
     REGISTER: "/register",
     REGISTER_CONFIRM: "/register-confirm",

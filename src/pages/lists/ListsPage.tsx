@@ -14,7 +14,7 @@ import PrivateLayout from "../PrivateLayout";
 import Heading from "../../components/ui/Heading";
 import { Event } from "../../interfaces/events.interface";
 import { useState } from "react";
-import { Calendar1, Filter, Clock, ArrowRight } from 'lucide-react';
+import { Calendar1, Filter, ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
@@ -60,18 +60,18 @@ const ListsPage: React.FC = () => {
                                 <img
                                     src={event.image.url}
                                     alt={event.title}
-                                    className="w-16 h-20 object-cover transform group-hover:scale-110 transition-transform duration-300"
+                                    className="w-16 h-24 object-cover transform group-hover:scale-110 transition-transform duration-300"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
 
-                            <div className="flex-1 px-4 space-y-1">
-                                <h3 className="text-base! font-bold line-clamp-2 group-hover:text-secondary transition-colors duration-300">
+                            <div className="flex-1 ps-4 pe-2 space-y-1">
+                                <h3 className="text-base! font-bold line-clamp-2 group-hover:text-secondary transition-colors duration-300 mt-0!">
                                     {formatUTF(event.title)}
                                 </h3>
                                 
                                 <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Clock className="h-4 w-4 text-secondary" />
+                                    <Calendar1 className="h-4 w-4 text-secondary" />
                                     <span>{formatDate(event.start_date)}</span>
                                 </div>
 
@@ -91,8 +91,8 @@ const ListsPage: React.FC = () => {
                             </div>
 
                             <div className="flex items-center">
-                                <div className="bg-secondary p-2 rounded-full group-hover:bg-indigo-200 transition-colors duration-300">
-                                    <ArrowRight className="size-6 text-white" />
+                                <div className="rounded-full group-hover:bg-indigo-200 transition-colors duration-300">
+                                    <ArrowRight className="size-8 text-secondary" />
                                 </div>
                             </div>
                         </div>

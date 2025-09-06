@@ -15,14 +15,14 @@ export default function PublicLayout({
   className = ""
 }: PublicLayoutProps) {
   const router = useIonRouter();
-  const {data, isLoading: isLoadingUser} = useAuth()
+  const { data, isLoading: isLoadingUser } = useAuth()
 
   if (isLoadingUser) return <Spinner />
   if (data) router.push(APP_ROUTES.PRIVATE_HOME)
   if (!data) return (
     <IonPage className={className} id="home-page">
       <IonContent color='secondary' className="container">
-        <div 
+        <div
           className="absolute inset-0 z-0 h-full"
           style={{
             backgroundImage: 'url(/public-background.png)',
@@ -32,22 +32,24 @@ export default function PublicLayout({
           }}
         ></div>
         <div className='relative z-10'>
-          <IonButton   
-          fill='clear' 
-          onClick={() => router.push('/', 'forward')}
-          className="py-8 bg-gradient-to-b from-secondary via-secondary w-full"
+          <IonButton
+            fill='clear'
+            onClick={() => router.push('/', 'forward')}
+            className="py-8 bg-gradient-to-b from-secondary via-secondary w-full"
           >
             <IonImg src="/logo.png" className='w-full' />
           </IonButton>
         </div>
         <div className="relative z-10">
           {children}
+          <footer className="container w-full h-full pt-24 pb-2 flex justify-center items-center z-20 p-1">
+            <div className="w-full bg-white backdrop-blur-sm rounded px-4 py-2">
+              <span className="block text-gray-700 font-semibold text-center">
+                &copy; Club Esportiu Deporunners {new Date().getFullYear()}
+              </span>
+            </div>
+          </footer>
         </div>
-        <footer className="w-full flex justify-center items-center fixed bottom-6 z-20 bg-secondary/75 p-1">
-          <span className="block text-white font-semibold ">
-            &copy; Club Esportiu Deporunners {new Date().getFullYear()}
-          </span>
-        </footer>
       </IonContent>
     </IonPage>
   )

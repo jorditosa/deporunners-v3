@@ -6,11 +6,13 @@ import ConfirmRegisterPage from '../pages/register/ConfirmRegisterPage';
 import ForgotPassword from '../pages/forgot-password/ForgotPassword';
 import { APP_ROUTES } from '../constants/endpoints';
 import ResetPassword from '../pages/reset-password/ResetPassword';
+import OnboardingPage from '../pages/onboarding/Onboarding';
 
 
 const PublicRoutes: React.FC = () => (
   <>
     <Switch>
+      <Route exact path={APP_ROUTES.ONBOARDING} component={OnboardingPage} />
       <Route exact path={APP_ROUTES.LOGIN} component={LoginPage} />
       <Route exact path={APP_ROUTES.REGISTER} component={RegisterPage} />
       <Route exact path={APP_ROUTES.REGISTER_CONFIRM} component={ConfirmRegisterPage} />
