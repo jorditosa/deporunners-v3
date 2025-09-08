@@ -26,7 +26,7 @@ const Posts = ({ posts }: Props) => {
         {
           posts.map((post: Post) => (
             <SwiperSlide key={post.id}>
-              <IonCard key={post.id} className='text-start cursor-grab bg-gradient-to-br from-secondary to-tertiary text-white mb-10 min-h-[80px] bg-light p-4 mx-1' color='secondary'>
+              <IonCard key={post.id} className='text-start cursor-grab bg-gradient-to-br from-secondary to-primary text-white mb-10 min-h-[80px] bg-light p-4 mx-1' color='secondary'>
                 <a
                   target='_blank'
                   href={post.link}

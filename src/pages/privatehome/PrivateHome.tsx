@@ -93,7 +93,7 @@ const PrivateHome: React.FC = () => {
               
               {/* Enhanced Button */}
               <div className='relative group'>
-                <div className='absolute -inset-0.5 bg-gradient-to-br from-secondary to-tertiary rounded group-hover:opacity-100 transition duration-300'></div>
+                <div className='absolute -inset-0.5 bg-gradient-to-br from-secondary to-primary rounded group-hover:opacity-100 transition duration-300'></div>
                 <IonButton
                   expand='block'
                   fill='clear'
