@@ -1,6 +1,5 @@
 import {
   IonApp,
-  IonRouterOutlet,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
@@ -36,7 +35,6 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
         <Switch>
           <Route path="/app" component={PrivateRoutes} />
 
@@ -45,7 +43,6 @@ const App: React.FC = () => (
 
           <Route component={NotFound} />
         </Switch>
-      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );

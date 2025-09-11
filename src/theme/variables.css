@@ -217,6 +217,11 @@ ion-item:nth-child(8) { animation-delay: 0.16s; }
 }
 
 :root {
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+
 	--font-family-roboto: Roboto, sans-serif;
 	--ion-color-primary: #3b61aa;
 	--ion-color-primary-rgb: 46, 46, 56;

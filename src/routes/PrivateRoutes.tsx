@@ -13,10 +13,10 @@ import ShopPage from '../pages/shop/ShopPage';
 import { APP_ROUTES } from '../constants/endpoints';
 import ProfilePage from '../pages/profile/ProfilePage';
 import ListsPageEvent from '../pages/lists/ListsPageEvent';
-import { IonReactRouter } from '@ionic/react-router';
 
 const PrivateRoutes: React.FC = () => (
-  <IonReactRouter>
+  <>
+
     <IonTabs>
       <IonRouterOutlet>
         <Switch>
@@ -28,22 +28,26 @@ const PrivateRoutes: React.FC = () => (
         </Switch>
       </IonRouterOutlet>
 
-      <IonTabBar slot="bottom" color='secondary' className='h-16 pb-2 border-t-2 border-secondary/50'>
-        <IonTabButton tab="home" href={APP_ROUTES.PRIVATE_HOME} className='bg-secondary'>
+      <IonTabBar
+        slot='bottom'
+        color='secondary'
+        className='h-20'
+      >
+        <IonTabButton tab="home" href={APP_ROUTES.PRIVATE_HOME}>
           <Home className='size-10 p-1 text-white' />
         </IonTabButton>
-        <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS} className='bg-secondary'>
+        <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS}>
           <CalendarRange className='size-10 p-1 text-white' />
         </IonTabButton>
-        <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP} className='bg-secondary'>
+        <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP}>
           <ShoppingCart className='size-10 p-1 text-white' />
         </IonTabButton>
-        <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE} className='bg-secondary'>
+        <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE}>
           <User className='size-10 p-1 text-white' />
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
-  </IonReactRouter>
+  </>
 );
 
 export default PrivateRoutes;
