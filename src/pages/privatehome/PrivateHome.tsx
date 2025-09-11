@@ -32,32 +32,28 @@ const PrivateHome: React.FC = () => {
       contentColor='light'
     >
       <main className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100'>
-        
-        
 
         {/* Calendar Section */}
         <section className='container mx-auto'>
-          <div className='h-full bg-white rounded-3xl shadow-xl p-2 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
-            <div className='flex items-center justify-between mb-4'>
-              <Heading
-                title="el Calendari"
-                variant="h1"
-                icon={Calendar1}
-                iconSize={10}
-                className='text-transparent bg-clip-text'
-              />
-            </div>
-            
-            <div className='relative'>
-              <div className='inset-0 rounded'></div>
-              <Calendar events={events} />
-            </div>
+          <div className='flex items-center justify-between mb-4'>
+            <Heading
+              title="el Calendari"
+              variant="h1"
+              icon={Calendar1}
+              iconSize={10}
+              className='text-transparent bg-clip-text'
+            />
+          </div>
+
+          <div className='relative'>
+            <div className='inset-0 rounded'></div>
+            <Calendar events={events} />
           </div>
         </section>
 
         {/* News Section */}
         <section className='container mx-auto'>
-          <div className='bg-white rounded-3xl shadow-xl p-2 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
+          <div className='bg-white rounded shadow-xl p-2 backdrop-blur-sm border border-white/20 transform hover:shadow-2xl transition-all duration-500'>
             <div className='flex items-center justify-between mb-4'>
               <Heading
                 title="notícies"
@@ -66,7 +62,7 @@ const PrivateHome: React.FC = () => {
                 iconSize={10}
               />
             </div>
-            
+
             <div className='relative'>
               <div className='absolute inset-0 rounded'></div>
               <Posts posts={posts} />
@@ -76,7 +72,6 @@ const PrivateHome: React.FC = () => {
 
         {/* Sponsors Section */}
         <section className='container mx-auto'>
-          <div className='bg-gradient-to-br from-blue-50 to-secondary/10 rounded-3xl shadow-xl p-4 backdrop-blur-sm transform hover:shadow-2xl transition-all duration-500'>
             <div className='flex items-center justify-between mb-4'>
               <Heading
                 title="patrocinadors"
@@ -85,19 +80,19 @@ const PrivateHome: React.FC = () => {
                 iconSize={10}
               />
             </div>
-            
+
             <div className='space-y-6'>
               <p className='text-gray-600 text-lg leading-relaxed'>
                 Descobreix tots els avantatges i descomptes exclusius que tenim per a tu com a membre del club.
               </p>
-              
+
               {/* Enhanced Button */}
               <div className='relative group'>
                 <div className='absolute -inset-0.5 bg-gradient-to-br from-secondary to-primary rounded group-hover:opacity-100 transition duration-300'></div>
                 <IonButton
                   expand='block'
                   fill='clear'
-                  className='relative text-white rounded-xl px-8 shadow-lg transform hover:scale-105 transition-all duration-300'
+                  className='relative text-white rounded-xl  shadow-lg transform hover:scale-105 transition-all duration-300'
                   onClick={() => window.open('https://deporunners.cat/patrocinadors/', '_blank')}
                 >
                   <div className='flex items-center justify-between w-full'>
@@ -111,7 +106,6 @@ const PrivateHome: React.FC = () => {
                 </IonButton>
               </div>
             </div>
-          </div>
         </section>
       </main>
     </PrivateLayout>

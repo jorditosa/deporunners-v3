@@ -19,6 +19,9 @@ const config: CapacitorConfig = {
     CapacitorHttp: {
       enabled: true,
     },
+    StatusBar: {
+      backgroundColor: '#03bdff'
+    }
   }
 };
 

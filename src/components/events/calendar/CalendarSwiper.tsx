@@ -23,7 +23,7 @@ const Calendar = ({ events }: Props) => {
       className="mySwiper"
       pagination={true}
       modules={[Pagination]}
-      spaceBetween={16}
+      spaceBetween={12}
     >
       {events.map((event: Event) => (
         <SwiperSlide key={event.id} >
@@ -66,7 +66,7 @@ const Calendar = ({ events }: Props) => {
               <img
                 src={event.image.url}
                 alt={event.title}
-                className="w-full h-[280px] object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-[290px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
