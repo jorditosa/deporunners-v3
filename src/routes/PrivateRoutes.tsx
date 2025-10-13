@@ -31,19 +31,19 @@ const PrivateRoutes: React.FC = () => (
       <IonTabBar
         slot='bottom'
         color='secondary'
-        className='h-20'
+        className='h-14 pb-2'
       >
         <IonTabButton tab="home" href={APP_ROUTES.PRIVATE_HOME}>
-          <Home className='size-10 p-1 text-white' />
+          <Home className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS}>
-          <CalendarRange className='size-10 p-1 text-white' />
+          <CalendarRange className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP}>
-          <ShoppingCart className='size-10 p-1 text-white' />
+          <ShoppingCart className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE}>
-          <User className='size-10 p-1 text-white' />
+          <User className='size-9 p-1 text-white' />
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

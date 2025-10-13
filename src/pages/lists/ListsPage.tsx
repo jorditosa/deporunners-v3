@@ -119,10 +119,6 @@ const ListsPage: React.FC = () => {
                             icon={Calendar1}
                             iconSize={10}
                         />
-                        
-                        <p className='text-gray-600 text-base'>
-                            Descobreix tots els esdeveniments del club
-                        </p>
                     </div>
 
                     {/* Search Bar */}

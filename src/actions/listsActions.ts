@@ -6,7 +6,7 @@ export const listsActions = {
 
     getAllList: async (): Promise<ListItem[] | undefined> => {
         try {
-            const { data } = await apiClient.get(`curses?pagination[pageSize]=100`);
+            const { data } = await apiClient.get(`curses?pagination[pageSize]=400`);
             return data.data
         } catch (error) {
             if (isAxiosError(error) && error.response) {

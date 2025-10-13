@@ -34,6 +34,8 @@ export default function ListsPageEvent() {
         .sort((a, b) => a.id - b.id)
       : [];
 
+    console.log(list)
+
 
   if (isLoading || isLoadingList) return <Spinner />
   if (event && list) return (
@@ -123,18 +125,18 @@ export default function ListsPageEvent() {
         </div>
 
         {/* Participants Section - SIMPLE LIST */}
-        <div className='bg-white rounded-xl shadow-lg p-2'>
-          <div className='flex items-center justify-between mb-6'>
+        <div className='bg-white rounded-xl shadow-lg py-2'>
+          <div className='w-full flex items-center justify-center mb-4'>
             <Heading
               title={`Llista de participants (${eventParticipants.length})`}
               variant='h3'
               icon={Users}
-              iconSize={5}
+              iconSize={6}
             />
           </div>
 
           {eventParticipants.length > 0 ? (
-            <div className='space-y-1'>
+            <div>
               {eventParticipants.map((item: ListItem, i: number) => {
                 const position = i + 1;
                 const isCurrentUser = user.username === item.attributes.name;
@@ -142,11 +144,11 @@ export default function ListsPageEvent() {
                 return (
                   <div
                     key={item.id}
-                    className={`flex items-center justify-between p-3 ${i % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                    className={`flex items-center justify-between p-2 ${i % 2 === 0 ? 'bg-secondary/5' : 'bg-white'
                       } hover:bg-gray-100 transition-colors duration-200`}
                   >
                     <div className='flex items-center gap-2'>
-                      <span className='text-base font-medium text-gray-800 w-6'>
+                      <span className='text-base font-semibold text-secondary w-6'>
                         {position}
                       </span>
                       <p className={`font-medium ${isCurrentUser ? 'text-secondary' : 'text-gray-800'
@@ -163,10 +165,7 @@ export default function ListsPageEvent() {
               })}
             </div>
           ) : (
-            <div className='text-center py-12 space-y-4'>
-              <div className='mx-auto w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center'>
-                <Users className='h-8 w-8 text-gray-400' />
-              </div>
+            <div className='text-center py-6 space-y-4'>
               <div className='space-y-2'>
                 <h3 className='text-lg font-semibold text-gray-700'>
                   Encara no hi ha participants
