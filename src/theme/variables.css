@@ -6,7 +6,7 @@ http://ionicframework.com/docs/theming/ */
 @theme {
   --color-primary: #3b61aa;
   --color-secondary: #03bdff;
-  --color-tertiary: #c2d344;
+  --color-tertiary: #c8d629;
   --color-white: #ffffff;
   --font-family-roboto: Roboto, sans-serif;
 }
@@ -217,7 +217,7 @@ ion-item:nth-child(8) { animation-delay: 0.16s; }
 }
 
 ion-tab-bar {
-  padding-bottom: var(–ion-safe-area-bottom, 16px);
+  padding-bottom: var(--ion-safe-area-bottom, 16px);
 }
 
 :root {

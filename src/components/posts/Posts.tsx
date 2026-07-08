@@ -6,7 +6,8 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './posts.module.css';
 import { Post } from '../../interfaces/posts.interface';
-import { BookOpenText } from 'lucide-react';
+import { BookOpen } from 'reicon';
+import Icon from '../ui/Icon';
 
 
 interface Props {
@@ -14,7 +15,6 @@ interface Props {
 }
 
 const Posts = ({ posts }: Props) => {
-  console.log(posts)
   return (
     <>
       <Swiper
@@ -36,7 +36,7 @@ const Posts = ({ posts }: Props) => {
                     <IonCardSubtitle className='w-10/12 text-white font-sans text-base font-semibold line-clamp-2 capitalize'>
                       {post.title.rendered}
                     </IonCardSubtitle>
-                    <BookOpenText className='size-8' />
+                    <Icon icon={BookOpen} className='size-8' />
                   </div>
                 </a>
               </IonCard>

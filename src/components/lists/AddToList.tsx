@@ -3,7 +3,8 @@ import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FilePen } from "lucide-react";
+import { PenLine } from "reicon";
+import Icon from "../ui/Icon";
 import { hashNames } from "../../helpers/hashNames";
 import { listsActions } from "../../actions/listsActions";
 import { Event } from "../../interfaces/events.interface";
@@ -24,13 +25,14 @@ const AddToList: React.FC<Props> = ({ event }) => {
       data: {
         name: user.username,
         avatar: user.avatar,
+        date: event.start_date,
         cursa_id: id.toString(),
         hash_id: hashNames(user?.username + id.toString()),
       }
     }
   })
 
-  const { mutate: addToList, isPending, isError } = useMutation({
+  const { mutate: addToList, isPending, isError, error } = useMutation({
     mutationFn: listsActions.addToList,
     onSuccess: () => {
       toast.success("Apuntat/da ✌️!")
@@ -49,21 +51,21 @@ const AddToList: React.FC<Props> = ({ event }) => {
         color="secondary"
         expand="block"
         type='submit'
-        fill="clear"
-        className='flex w-full items-center gap-2 bg-gradient-to-br from-secondary bg-primary text-white rounded-lg font-medium hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl'
+        fill="solid"
+        className='flex w-full items-center gap-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300'
       >
         {isPending
           ? (
               <IonSpinner color='light' />
           ) : (
             <>
-              <FilePen className={isError ? "size-6 text-red-500" : "size-6 text-white"} />
+              <Icon icon={PenLine} className={isError ? "size-6 text-red-200" : "size-6 text-white"} />
               <span className="ms-2 text-white">M'hi apunto!</span>
             </>
           )}
       </IonButton>
       {(isError) && (
-        <p className="text-red-500 text-base text-center">Ei!, ja estàs apuntat/da</p>
+        <p className="text-red-500 text-base text-center">{error.message || "No s'ha pogut completar la inscripció"}</p>
       )}
     </form>
 

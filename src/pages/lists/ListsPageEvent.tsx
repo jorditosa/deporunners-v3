@@ -4,11 +4,13 @@ import { eventsActions } from '../../actions/eventsActions';
 import { useParams } from 'react-router';
 import Spinner from '../../components/ui/Spinner';
 import Heading from '../../components/ui/Heading';
+import EmptyState from '../../components/ui/EmptyState';
 import AddToList from '../../components/lists/AddToList';
 import { listsActions } from '../../actions/listsActions';
 import { ListItem } from '../../interfaces/lists.interface';
 import { formatDate } from '../../helpers/formatDate';
-import { ExternalLink, MapPin, Users, Trophy, Calendar1 } from 'lucide-react';
+import { LinkSquare, Pin, Users, Trophy, Calendar, Group2, WifiOff } from 'reicon';
+import Icon from '../../components/ui/Icon';
 import { useAuth } from '../../hooks/useAuth';
 import DeleteToList from '../../components/lists/DeleteToList';
 import BackBtn from '../../components/ui/BackBtn';
@@ -17,12 +19,12 @@ export default function ListsPageEvent() {
   const { id } = useParams<{ id: string }>();
   const { data: user } = useAuth();
 
-  const { data: event, isLoading } = useQuery({
+  const { data: event, isLoading, isError: isEventError, refetch: refetchEvent } = useQuery({
     queryKey: ['events', id],
     queryFn: () => eventsActions.geteventById(id),
     enabled: !!id
   });
-  const { data: list, isLoading: isLoadingList } = useQuery({
+  const { data: list, isLoading: isLoadingList, isError: isListError, refetch: refetchList } = useQuery({
     queryKey: ['list'],
     queryFn: listsActions.getAllList
   });
@@ -34,10 +36,23 @@ export default function ListsPageEvent() {
         .sort((a, b) => a.id - b.id)
       : [];
 
-    console.log(list)
-
+  const currentUserEntry = eventParticipants.find(item => item.attributes.name === user?.username);
 
   if (isLoading || isLoadingList) return <Spinner />
+  if (isEventError || isListError) return (
+    <PrivateLayout contentColor='light'>
+      <main className='container'>
+        <BackBtn />
+        <EmptyState
+          icon={WifiOff}
+          title="No s'ha pogut carregar l'esdeveniment"
+          description="Comprova la connexió i torna-ho a provar."
+          actionLabel="Reintentar"
+          onAction={() => { refetchEvent(); refetchList(); }}
+        />
+      </main>
+    </PrivateLayout>
+  )
   if (event && list) return (
     <PrivateLayout
       contentColor='light'
@@ -49,86 +64,70 @@ export default function ListsPageEvent() {
         <div className='bg-white rounded-xl shadow-lg overflow-hidden'>
           {/* Event Image (if available) */}
           {event.image && (
-            <div className='relative h-32 overflow-hidden'>
+            <div className='relative h-16 overflow-hidden'>
               <img
                 src={event.image.url}
                 alt={event.title}
-                className='w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500'
+                className='w-full h-full object-cover object-center'
               />
-              <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent'></div>
+              <div className='absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent'></div>
+              <p className='absolute bottom-1 left-2 right-2 text-white font-semibold text-sm truncate'>
+                {event.title}
+              </p>
             </div>
           )}
 
-          <div className='p-2 space-y-4'>
+          <div className='p-3 space-y-3'>
             {/* Title (if no image) */}
             {!event.image && (
               <Heading
                 title={event.title}
-                variant='h1'
+                variant='h2'
                 icon={Trophy}
-                iconSize={8}
+                iconSize={6}
               />
             )}
 
             {/* Event Info */}
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-2'>
-              <div className='flex items-center gap-3 p-2 bg-gray-50 rounded-lg'>
-                <div className='bg-indigo-100 p-2 rounded-full'>
-                  <Calendar1 className='size-6 text-secondary' />
-                </div>
-                <div>
-                  <p className='text-sm text-gray-600'>Data de l'esdeveniment</p>
-                  <p className='font-semibold text-gray-800'>{formatDate(event.start_date)}</p>
-                </div>
+            <div className='space-y-1.5'>
+              <div className='space-y-1 text-sm text-gray-700'>
+                <span className='flex items-center gap-1.5'>
+                  <Icon icon={Calendar} className='size-4 text-secondary shrink-0' />
+                  <span className='font-medium'>{formatDate(event.start_date)}</span>
+                </span>
+                <span className='flex items-center gap-1.5'>
+                  <Icon icon={Pin} className='size-4 text-secondary shrink-0' />
+                  <span className='font-medium'>{event.venue.venue}</span>
+                </span>
               </div>
 
-              <div className='flex items-center gap-3 p-2 bg-gray-50 rounded-lg'>
-                <div className='bg-blue-100 p-2 rounded-full'>
-                  <MapPin className='size-6 text-primary' />
-                </div>
-                <div>
-                  <p className='text-sm text-gray-600'>Lloc de l'esdeveniment</p>
-                  <p className='font-semibold text-gray-800'>{event.venue.venue}</p>
-                </div>
-              </div>
-
-              <div className='flex items-center gap-3 p-2 bg-gray-50 rounded-lg'>
-                <div className='bg-green-100 p-2 rounded-full'>
-                  <Users className='size-6 text-green-600' />
-                </div>
-                <div>
-                  <p className='text-sm text-gray-600'>Participants apuntats</p>
-                  <p className='font-semibold text-gray-800'>{eventParticipants.length}</p>
-                </div>
-              </div>
-
-              <div>
+              <div className='flex items-center justify-between gap-3'>
+                <span className='flex items-center gap-1.5 text-sm text-green-700 font-semibold'>
+                  <Icon icon={Users} className='size-4 shrink-0' />
+                  {eventParticipants.length} apuntats
+                </span>
                 <a
                   href={event.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className='flex w-full items-center gap-2 p-2 bg-gray-50! rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl'
+                  className='flex items-center gap-1.5 text-sm text-secondary font-semibold hover:underline'
                 >
-                  <div className='bg-blue-100 p-2 rounded-full'>
-                    <ExternalLink className='size-6 text-blue-600' />
-                  </div>
-                  <span>Més informació al Web</span>
+                  <Icon icon={LinkSquare} className='size-4 shrink-0' />
+                  Més info
                 </a>
               </div>
             </div>
 
             {/* Add to List Component */}
-            <div className='pt-4 border-t border-gray-200'>
-              <AddToList event={event} />
-            </div>
+            <AddToList event={event} />
           </div>
         </div>
 
-        {/* Participants Section - SIMPLE LIST */}
-        <div className='bg-white rounded-xl shadow-lg py-2'>
+        {/* Participants Section - LIST */}
+        <div className='bg-white rounded-xl shadow-lg py-4 px-2'>
           <div className='w-full flex items-center justify-center mb-4'>
             <Heading
-              title={`Llista de participants (${eventParticipants.length})`}
+              title={`${eventParticipants.length} apuntats`}
               variant='h3'
               icon={Users}
               iconSize={6}
@@ -136,45 +135,36 @@ export default function ListsPageEvent() {
           </div>
 
           {eventParticipants.length > 0 ? (
-            <div>
-              {eventParticipants.map((item: ListItem, i: number) => {
-                const position = i + 1;
-                const isCurrentUser = user.username === item.attributes.name;
-
+            <div className='space-y-1'>
+              {eventParticipants.map((item: ListItem) => {
+                const isCurrentUser = item.id === currentUserEntry?.id;
                 return (
                   <div
                     key={item.id}
-                    className={`flex items-center justify-between p-2 ${i % 2 === 0 ? 'bg-secondary/5' : 'bg-white'
-                      } hover:bg-gray-100 transition-colors duration-200`}
+                    className={`flex items-center justify-between gap-3 p-2 rounded-lg ${isCurrentUser ? 'bg-secondary/10' : ''}`}
                   >
-                    <div className='flex items-center gap-2'>
-                      <span className='text-base font-semibold text-secondary w-6'>
-                        {position}
-                      </span>
-                      <p className={`font-medium ${isCurrentUser ? 'text-secondary' : 'text-gray-800'
-                        }`}>
+                    <div className='flex items-center gap-3 min-w-0'>
+                      <img
+                        src={item.attributes.avatar}
+                        alt={item.attributes.name}
+                        className='size-10 rounded-full object-cover border-2 border-secondary/30 shrink-0'
+                      />
+                      <span className={`truncate ${isCurrentUser ? 'font-semibold text-secondary' : 'text-gray-800'}`}>
                         {item.attributes.name}
-                      </p>
+                      </span>
                     </div>
 
-                    {isCurrentUser && (
-                      <DeleteToList id={item.id} />
-                    )}
+                    {isCurrentUser && <DeleteToList id={item.id} />}
                   </div>
                 );
               })}
             </div>
           ) : (
-            <div className='text-center py-6 space-y-4'>
-              <div className='space-y-2'>
-                <h3 className='text-lg font-semibold text-gray-700'>
-                  Encara no hi ha participants
-                </h3>
-                <p className='text-gray-500'>
-                  Sigues el primer a apuntar-te a aquest esdeveniment!
-                </p>
-              </div>
-            </div>
+            <EmptyState
+              icon={Group2}
+              title="Encara no hi ha participants"
+              description="Sigues el primer a apuntar-te a aquest esdeveniment!"
+            />
           )}
         </div>
 

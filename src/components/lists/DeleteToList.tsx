@@ -1,6 +1,7 @@
 import { IonButton, IonSpinner } from "@ionic/react";
 import React from "react";
-import { Eraser } from "lucide-react";
+import { Eraser } from "reicon";
+import Icon from "../ui/Icon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { listsActions } from "../../actions/listsActions";
 import { toast } from "react-toastify";
@@ -37,7 +38,7 @@ const DeleteToList: React.FC<Props> = ({ id }) => {
             fill="clear"
             className="px-1"
             onClick={() => handleOut(id)}>
-            <Eraser className="text-primary siz-6" />
+            <Icon icon={Eraser} className="text-primary siz-6" />
           </IonButton>
       }
     </>

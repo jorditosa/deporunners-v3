@@ -1,15 +1,17 @@
 import { useForm } from 'react-hook-form'
 import PublicLayout from '../PublicLayout'
-import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonButton, IonSpinner } from '@ionic/react'
+import { IonRow, IonCol, IonCard, IonCardHeader, IonCardContent, IonInput, IonButton, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { RegisterFormData } from '../../interfaces/auth.interface'
 import Heading from '../../components/ui/Heading'
-import { CheckCheck } from 'lucide-react'
+import { CheckRead } from 'reicon'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
+import { toast } from 'react-toastify'
 import { APP_ROUTES } from '../../constants/endpoints'
 
 export default function ConfirmRegisterPage() {
+    const router = useIonRouter()
     const { handleSubmit, register, formState: { errors }, reset } = useForm<RegisterFormData>({
         defaultValues: {
             confirmCode: ''
@@ -18,18 +20,17 @@ export default function ConfirmRegisterPage() {
     const { mutate, isPending } = useMutation({
         mutationFn: authActions.confirmAccount,
         onError: (error) => {
-            console.log(error.message)
+            toast.error(error.message)
         },
-        onSuccess: (response) => {
-            console.log(response)
+        onSuccess: () => {
+            toast.success("Compte confirmat, ja pots iniciar sessió")
             reset()
+            router.push(APP_ROUTES.LOGIN, 'forward')
         }
     })
 
     const submitForm = (formData: RegisterFormData) => {
-        console.log(formData)
         mutate(formData)
-
     }
     return (
         <PublicLayout>
@@ -41,7 +42,7 @@ export default function ConfirmRegisterPage() {
                                 <Heading
                                     title="confirmar Alta"
                                     variant="h1"
-                                    icon={CheckCheck}
+                                    icon={CheckRead}
                                     iconSize={12}
                                 />
                             </IonCardHeader>
@@ -61,7 +62,7 @@ export default function ConfirmRegisterPage() {
                                         />
                                         {errors.confirmCode && (
                                             <span className="text-red-500">
-                                                Ups, el codi no és correcte.
+                                                {errors.confirmCode.message}
                                             </span>
                                         )}
                                     </div>

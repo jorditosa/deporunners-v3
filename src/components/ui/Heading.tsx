@@ -1,10 +1,11 @@
 import React, { JSX } from 'react'
-import { LucideIcon } from 'lucide-react'
+import type { IconFunction } from 'reicon'
+import Icon from './Icon'
 
 interface Props {
     title: string;
     variant: 'h1' | 'h2' | 'h3';
-    icon?: LucideIcon;
+    icon?: IconFunction;
     iconSize?: number;
     className?: string;
     iconClassName?: string;
@@ -13,7 +14,7 @@ interface Props {
 export default function Heading({
     title,
     variant,
-    icon: Icon,
+    icon: iconFn,
     iconSize = 10,
     className = '',
     iconClassName = ''
@@ -28,8 +29,9 @@ export default function Heading({
 
     return (
         <div className={`flex items-center justify-start gap-2 py-2 ${className}`}>
-            {Icon && (
+            {iconFn && (
                 <Icon
+                    icon={iconFn}
                     className={`size-${iconSize} text-secondary ${iconClassName}`}
                 />
             )}

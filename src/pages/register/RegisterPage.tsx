@@ -3,7 +3,8 @@ import PublicLayout from '../PublicLayout'
 import { IonInput, IonInputPasswordToggle, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { RegisterFormData } from '../../interfaces/auth.interface'
-import { UserPlus, Mail, Lock, AlertCircle, Shield } from 'lucide-react'
+import { UserAdd, Envelope, Lock, AlertCircle, Shield } from 'reicon'
+import Icon from '../../components/ui/Icon'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
@@ -57,7 +58,7 @@ export default function RegisterPage() {
                                 {/* Email Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="email" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Mail className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Envelope} className='h-4 w-4 text-secondary' />
                                         Correu electrònic
                                     </label>
                                     <div className='relative'>
@@ -80,7 +81,7 @@ export default function RegisterPage() {
                                     </div>
                                     {errors.email && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.email.message}</span>
                                         </div>
                                     )}
@@ -89,7 +90,7 @@ export default function RegisterPage() {
                                 {/* Password Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="password" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Lock className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Lock} className='h-4 w-4 text-secondary' />
                                         Contrasenya
                                     </label>
                                     <div className='relative'>
@@ -114,7 +115,7 @@ export default function RegisterPage() {
                                     </div>
                                     {errors.password && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.password.message}</span>
                                         </div>
                                     )}
@@ -123,7 +124,7 @@ export default function RegisterPage() {
                                 {/* Repeat Password Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="repeatPassword" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Lock className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Lock} className='h-4 w-4 text-secondary' />
                                         Confirmar contrasenya
                                     </label>
                                     <div className='relative'>
@@ -146,7 +147,7 @@ export default function RegisterPage() {
                                     </div>
                                     {errors.repeatPassword && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.repeatPassword.message}</span>
                                         </div>
                                     )}
@@ -165,7 +166,7 @@ export default function RegisterPage() {
                                         </div>
                                     ) : (
                                         <div className='flex items-center justify-center gap-2'>
-                                            <UserPlus className='size-5' />
+                                            <Icon icon={UserAdd} className='size-5' />
                                             <span>Crear compte</span>
                                         </div>
                                     )}
@@ -177,7 +178,7 @@ export default function RegisterPage() {
                                         to={APP_ROUTES.LOGIN}
                                         className='inline-flex items-center gap-2 text-secondary hover:text-blue-800 font-medium transition-colors duration-300'
                                     >
-                                        <UserPlus className='size-5' />
+                                        <Icon icon={UserAdd} className='size-5' />
                                         <span>Ja tens compte? Inicia sessió</span>
                                     </Link>
                                 </div>
@@ -189,7 +190,7 @@ export default function RegisterPage() {
                         <div className='bg-gradient-to-r from-green-50 to-teal-50 rounded-2xl p-6 text-center border border-green-100'>
                             <div className='space-y-3'>
                                 <div className='flex items-center justify-center gap-2 text-blue-700'>
-                                    <Shield className='h-5 w-5' />
+                                    <Icon icon={Shield} className='h-5 w-5' />
                                     <span className='font-semibold'>Informació important</span>
                                 </div>
                                 <p className='text-gray-600 text-sm'>

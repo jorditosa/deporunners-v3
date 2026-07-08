@@ -12,7 +12,7 @@ export const authActions = {
         const { email, password } = formData;
         try {
             const { data } = await apiClient.post<LoginApiResponse>(
-                `auth/local?filters[email][$eq]=${email}?populate=*`,
+                `auth/local`,
                 {
                     identifier: email,
                     password: password
@@ -35,8 +35,7 @@ export const authActions = {
         const { email, password } = formData;
         try {
 
-            const userInfo: WordPressUserApiResponse = await apiWPClient.get(`users?search=${email}&context=edit`);
-            console.log(userInfo)
+            const userInfo: WordPressUserApiResponse = await apiWPClient.get(`users?search=${encodeURIComponent(email)}&context=edit`);
             if (!userInfo.data || userInfo.data.length === 0) {
                 throw new Error(`No s'ha trobat l'usuari.`);
             }
@@ -72,7 +71,7 @@ export const authActions = {
         const { email, confirmCode } = formData;
         try {
             const response = await apiClient.post(
-                `auth/local?filters[email][$eq]=${email}?populate=*`,
+                `auth/local`,
                 {
                     email,
                     confirmCode
@@ -128,7 +127,7 @@ export const authActions = {
     getUser: async (token: string) => {
         try {
             if (!isTokenValidFormat(token)) {
-                localStorage.removeItem('depotoken');
+                await Preferences.remove({ key: 'depotoken' });
                 throw new Error('Token expirado o mal formato');
             }
 
@@ -149,7 +148,7 @@ export const authActions = {
 
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error);
+                throw new Error(error.response.data.error?.message ?? 'Session error');
             }
             throw error;
         }
@@ -157,17 +156,11 @@ export const authActions = {
 
     deleteUser: async (id: string): Promise<AxiosResponse> => {
         try {
-            const respone = await apiClient.delete(`${import.meta.env.VITE_API_BASE_URL}users/${id}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`
-                    }
-                });
+            const respone = await apiClient.delete(`users/${id}`);
             return respone;
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error);
+                throw new Error(error.response.data.error?.message ?? 'Delete account error');
             }
             throw error;
         }

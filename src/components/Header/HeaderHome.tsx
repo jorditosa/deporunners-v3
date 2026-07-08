@@ -1,6 +1,7 @@
 import { IonButton, IonHeader, IonImg, IonToolbar, useIonRouter } from '@ionic/react';
 import React from 'react';
-import { LogOut } from 'lucide-react';
+import { Logout } from 'reicon';
+import Icon from '../ui/Icon';
 import { Preferences } from '@capacitor/preferences';
 import { useQueryClient } from '@tanstack/react-query';
 import { APP_ROUTES } from '../../constants/endpoints';
@@ -28,7 +29,8 @@ const HeaderHome: React.FC = () => {
                             router.push(APP_ROUTES.PUBLIC_HOME)
                         }}
                     >
-                        <LogOut
+                        <Icon
+                            icon={Logout}
                             className='size-8 text-white'
                         />
                     </IonButton>

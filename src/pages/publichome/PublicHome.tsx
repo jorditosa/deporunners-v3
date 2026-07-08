@@ -1,7 +1,8 @@
 import { IonButton, useIonRouter } from '@ionic/react';
 import PublicLayout from '../PublicLayout';
 import { APP_ROUTES } from '../../constants/endpoints';
-import { LogIn, UserPlus, KeyRound, ArrowRight } from 'lucide-react';
+import { Login, UserAdd, Key, ArrowRight } from 'reicon';
+import Icon from '../../components/ui/Icon';
 import { useEffect } from 'react';
 import { Preferences } from '@capacitor/preferences';
 
@@ -12,21 +13,21 @@ const PublicHome: React.FC = () => {
         {
             title: 'Iniciar Sessió',
             subtitle: 'Accedeix al teu compte',
-            icon: LogIn,
+            icon: Login,
             route: APP_ROUTES.LOGIN,
             gradient: 'from-secondary to-secondary/60',
         },
         {
             title: 'Primera vegada',
             subtitle: 'Crea el teu compte nou',
-            icon: UserPlus,
+            icon: UserAdd,
             route: APP_ROUTES.REGISTER,
             gradient: 'from-secondary to-secondary/60',
         },
         {
             title: 'Recuperar contrasenya',
             subtitle: 'Restableix el teu accés',
-            icon: KeyRound,
+            icon: Key,
             route: APP_ROUTES.FORGOT_PASSWORD,
             gradient: 'from-secondary to-secondary/60',
         }
@@ -70,7 +71,7 @@ const PublicHome: React.FC = () => {
                                     className='w-full flex items-start justify-between gap-4'>
                                     <div className='w-full flex items-center justify-start text-start gap-4'>
                                         <div className={`bg-gradient-to-r ${action.gradient} p-4 rounded-xl shadow-lg`}>
-                                            <action.icon className='size-8 text-white' />
+                                            <Icon icon={action.icon} className='size-8 text-white' />
                                         </div>
 
                                         <div className='space-y-1'>
@@ -83,7 +84,7 @@ const PublicHome: React.FC = () => {
                                         </div>
                                     </div>
 
-                                    <ArrowRight className='size-8 text-secondary' />
+                                    <Icon icon={ArrowRight} className='size-8 text-secondary' />
                                 </IonButton>
                             </div>
                         ))}

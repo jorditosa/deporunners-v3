@@ -3,14 +3,16 @@ import PublicLayout from '../PublicLayout'
 import { IonInput, IonInputPasswordToggle, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { LoginFormData } from '../../interfaces/auth.interface'
-import { LogIn, Mail, Lock, AlertCircle } from 'lucide-react'
-import { useMutation } from '@tanstack/react-query'
+import { Login, Envelope, Lock, AlertCircle } from 'reicon'
+import Icon from '../../components/ui/Icon'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
 import { APP_ROUTES } from '../../constants/endpoints'
 
 export default function LoginPage() {
     const router = useIonRouter();
+    const queryClient = useQueryClient();
     const { handleSubmit, register, formState: { errors }, reset } = useForm<LoginFormData>({
         defaultValues: {
             email: '',
@@ -22,9 +24,10 @@ export default function LoginPage() {
         onError: (error) => {
             toast.error(error.message)
         },
-        onSuccess: () => {
+        onSuccess: async () => {
             toast.success("Login correcte")
             reset()
+            await queryClient.invalidateQueries({ queryKey: ['user'] });
             router.push(APP_ROUTES.PRIVATE_HOME, 'forward')
         }
     })
@@ -55,7 +58,7 @@ export default function LoginPage() {
                                 {/* Email Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="email" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Mail className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Envelope} className='h-4 w-4 text-secondary' />
                                         Correu electrònic
                                     </label>
                                     <div className='relative'>
@@ -78,7 +81,7 @@ export default function LoginPage() {
                                     </div>
                                     {errors.email && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.email.message}</span>
                                         </div>
                                     )}
@@ -87,7 +90,7 @@ export default function LoginPage() {
                                 {/* Password Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="password" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Lock className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Lock} className='h-4 w-4 text-secondary' />
                                         Contrasenya
                                     </label>
                                     <div className='relative'>
@@ -112,7 +115,7 @@ export default function LoginPage() {
                                     </div>
                                     {errors.password && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.password.message}</span>
                                         </div>
                                     )}
@@ -131,7 +134,7 @@ export default function LoginPage() {
                                         </div>
                                     ) : (
                                         <div className='flex items-center justify-center gap-2 '>
-                                            <LogIn className='size-6' />
+                                            <Icon icon={Login} className='size-6' />
                                             <span>Accedir</span>
                                         </div>
                                     )}
@@ -143,7 +146,7 @@ export default function LoginPage() {
                                         to={APP_ROUTES.FORGOT_PASSWORD}
                                         className='inline-flex items-center gap-2 text-secondary hover:text-indigo-800 font-medium transition-colors duration-300'
                                     >
-                                        <Lock className='h-4 w-4' />
+                                        <Icon icon={Lock} className='h-4 w-4' />
                                         <span>Has oblidat la contrasenya?</span>
                                     </Link>
                                 </div>

@@ -8,10 +8,6 @@ export const APP_ROUTES = {
     RESET_PASSWORD: "/reset-password",
     PRIVATE_HOME: "/app/dashboard",
     PRIVATE_LISTS: "/app/lists",
-    PRIVATE_LISTS_TRAININGS: "/app/lists/training",
-    PRIVATE_LISTS_TREKKINGS: "/app/lists/caminades",
-    PRIVATE_LISTS_RACES: "/app/lists/curses",
-    PRIVATE_LISTS_SOCIAL: "/app/lists/social",
     PRIVATE_SHOP: "/app/shop",
     PRIVATE_PROFILE: "/app/profile",
 }

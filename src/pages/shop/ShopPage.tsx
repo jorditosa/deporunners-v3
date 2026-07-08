@@ -1,6 +1,7 @@
 import { IonImg } from '@ionic/react';
 import PrivateLayout from '../PrivateLayout';
-import { ShoppingCart, Store, ExternalLink } from 'lucide-react';
+import { CartShopping, Store, LinkSquare } from 'reicon';
+import Icon from '../../components/ui/Icon';
 import Heading from '../../components/ui/Heading';
 
 const ShopPage: React.FC = () => {
@@ -83,7 +84,7 @@ const ShopPage: React.FC = () => {
               <p className='text-3xl font-bold'>{products.length}</p>
             </div>
             <div className='bg-white/20 p-3 rounded-full'>
-              <ShoppingCart className='h-8 w-8 text-white' />
+              <Icon icon={CartShopping} className='h-8 w-8 text-white' />
             </div>
           </div>
         </div>
@@ -125,9 +126,9 @@ const ShopPage: React.FC = () => {
                     onClick={() => window.open(product.url, '_blank')}
                     className='w-full bg-gradient-to-r from-secondary to-primary text-white py-3! rounded! font-medium hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2'
                   >
-                    <ShoppingCart className='size-5' />
+                    <Icon icon={CartShopping} className='size-5' />
                     <span>Comprar</span>
-                    <ExternalLink className='size-5' />
+                    <Icon icon={LinkSquare} className='size-5' />
                   </button>
                 </div>
               </div>

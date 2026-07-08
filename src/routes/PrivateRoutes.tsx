@@ -5,7 +5,8 @@ import {
   IonTabButton,
   IonTabs
 } from '@ionic/react';
-import { CalendarRange, Home, ShoppingCart, User } from 'lucide-react';
+import { CalendarDays, Home, CartShopping, User } from 'reicon';
+import Icon from '../components/ui/Icon';
 
 import PrivateHome from '../pages/privatehome/PrivateHome';
 import ListsPage from '../pages/lists/ListsPage';
@@ -34,16 +35,16 @@ const PrivateRoutes: React.FC = () => (
         className='h-14 pb-2'
       >
         <IonTabButton tab="home" href={APP_ROUTES.PRIVATE_HOME}>
-          <Home className='size-9 p-1 text-white' />
+          <Icon icon={Home} className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="lists" href={APP_ROUTES.PRIVATE_LISTS}>
-          <CalendarRange className='size-9 p-1 text-white' />
+          <Icon icon={CalendarDays} className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="shop" href={APP_ROUTES.PRIVATE_SHOP}>
-          <ShoppingCart className='size-9 p-1 text-white' />
+          <Icon icon={CartShopping} className='size-9 p-1 text-white' />
         </IonTabButton>
         <IonTabButton tab="profile" href={APP_ROUTES.PRIVATE_PROFILE}>
-          <User className='size-9 p-1 text-white' />
+          <Icon icon={User} className='size-9 p-1 text-white' />
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

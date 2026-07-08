@@ -2,7 +2,8 @@ import { IonButton, IonModal, IonHeader, IonToolbar, IonTitle, IonContent, useIo
 import { useAuth } from '../../hooks/useAuth';
 import PrivateLayout from '../PrivateLayout';
 import Carnet from '../../components/carnet/Carnet';
-import { Trash, User, Calendar, Settings, LogOut, AlertTriangle, Shield } from 'lucide-react';
+import { Trash, User, Calendar, Settings, Logout, AlertTriangle, Shield } from 'reicon';
+import Icon from '../../components/ui/Icon';
 import Spinner from '../../components/ui/Spinner';
 import { listsActions } from '../../actions/listsActions';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -60,8 +61,6 @@ const ProfilePage: React.FC = () => {
 
     return (
       <PrivateLayout
-        title='Perfil'
-        headerColor='secondary'
         contentColor='light'
       >
         <main className='container space-y-6'>
@@ -83,7 +82,7 @@ const ProfilePage: React.FC = () => {
           <div className='bg-white rounded-xl shadow-lg'>
             <div className='flex items-center gap-3 mb-4 px-4 pt-4'>
               <div className='bg-indigo-100 p-2 rounded-full'>
-                <Shield className='h-5 w-5 text-indigo-600' />
+                <Icon icon={Shield} className='h-5 w-5 text-indigo-600' />
               </div>
               <h3 className='text-lg font-semibold text-gray-800'>Carnet del club</h3>
             </div>
@@ -94,7 +93,7 @@ const ProfilePage: React.FC = () => {
           <div className='bg-white rounded-xl shadow-lg p-6'>
             <div className='flex items-center gap-3 mb-6'>
               <div className='bg-gray-100 p-2 rounded-full'>
-                <Settings className='h-5 w-5 text-gray-600' />
+                <Icon icon={Settings} className='h-5 w-5 text-gray-600' />
               </div>
               <h3 className='text-lg font-semibold text-gray-800'>Configuració del compte</h3>
             </div>
@@ -104,7 +103,7 @@ const ProfilePage: React.FC = () => {
               <div className='p-2 bg-gray-50 rounded-lg'>
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center gap-3'>
-                    <User className='h-5 w-5 text-indigo-600' />
+                    <Icon icon={User} className='h-5 w-5 text-indigo-600' />
                     <div>
                       <p className='font-medium text-gray-800'>Nom d'usuari</p>
                       <p className='text-sm text-gray-600'>{data.username}</p>
@@ -120,7 +119,7 @@ const ProfilePage: React.FC = () => {
               <div className='p-2 bg-gray-50 rounded-lg'>
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center gap-3'>
-                    <Calendar className='h-5 w-5 text-purple-600' />
+                    <Icon icon={Calendar} className='h-5 w-5 text-purple-600' />
                     <div>
                       <p className='font-medium text-gray-800'>Esdeveniments</p>
                       <p className='text-sm text-gray-600'>Llistes a les que estàs apuntat/da</p>
@@ -136,7 +135,7 @@ const ProfilePage: React.FC = () => {
           <div className='bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500'>
             <div className='flex items-center gap-3 mb-4'>
               <div className='bg-red-100 p-2 rounded-full'>
-                <AlertTriangle className='h-5 w-5 text-red-600' />
+                <Icon icon={AlertTriangle} className='h-5 w-5 text-red-600' />
               </div>
               <h3 className='text-lg font-semibold text-red-700'>Zona perillosa</h3>
             </div>
@@ -150,7 +149,7 @@ const ProfilePage: React.FC = () => {
                 onClick={openDeleteModal}
                 className='w-full flex items-center justify-center gap-3 p-3! bg-red-50 hover:bg-red-100 text-red-700 rounded-lg! font-medium transition-colors duration-300 border-2 border-red-200 hover:border-red-300'
               >
-                <Trash className='size-5' />
+                <Icon icon={Trash} className='size-5' />
                 <span>Eliminar el meu compte</span>
               </button>
             </div>
@@ -167,7 +166,7 @@ const ProfilePage: React.FC = () => {
               <div className="flex flex-col gap-6 h-full bg-gray-50">
                 <div className="flex-1 flex flex-col justify-center items-center text-center bg-white rounded-xl p-8 mx-4 mt-4 shadow-lg">
                   <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                    <Trash className="text-red-500 h-10 w-10" />
+                    <Icon icon={Trash} className="text-red-500 h-10 w-10" />
                   </div>
                   
                   <h2 className="text-2xl font-bold text-red-600 mb-3">
@@ -203,7 +202,7 @@ const ProfilePage: React.FC = () => {
                     className="flex-1"
                   >
                     <span className="flex items-center gap-2">
-                      <LogOut className="h-4 w-4" />
+                      <Icon icon={Logout} className="h-4 w-4" />
                       Cancel·lar
                     </span>
                   </IonButton>
@@ -215,7 +214,7 @@ const ProfilePage: React.FC = () => {
                     disabled={isPending}
                   >
                     <span className="flex items-center gap-2">
-                      <Trash className="size-5" />
+                      <Icon icon={Trash} className="size-5" />
                       {isPending ? 'Eliminant...' : 'Eliminar compte'}
                     </span>
                   </IonButton>

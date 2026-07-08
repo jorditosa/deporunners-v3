@@ -3,7 +3,8 @@ import PublicLayout from '../PublicLayout'
 import { IonInput, IonInputPasswordToggle, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { ResetFormData } from '../../interfaces/auth.interface'
-import { RefreshCw, Key, Lock, AlertCircle, Mail } from 'lucide-react'
+import { Refresh, Key, Lock, AlertCircle, Envelope } from 'reicon'
+import Icon from '../../components/ui/Icon'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
@@ -61,7 +62,7 @@ export default function ResetPassword() {
                                 {/* Code Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="code" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Key className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Key} className='h-4 w-4 text-secondary' />
                                         Codi de recuperació
                                     </label>
                                     <div className='relative'>
@@ -84,7 +85,7 @@ export default function ResetPassword() {
                                     </div>
                                     {errors.code && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.code.message}</span>
                                         </div>
                                     )}
@@ -93,7 +94,7 @@ export default function ResetPassword() {
                                 {/* Password Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="password" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Lock className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Lock} className='h-4 w-4 text-secondary' />
                                         Nova contrasenya
                                     </label>
                                     <div className='relative'>
@@ -118,7 +119,7 @@ export default function ResetPassword() {
                                     </div>
                                     {errors.password && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.password.message}</span>
                                         </div>
                                     )}
@@ -127,7 +128,7 @@ export default function ResetPassword() {
                                 {/* Repeat Password Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="repeatPassword" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Lock className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Lock} className='h-4 w-4 text-secondary' />
                                         Confirmar contrasenya
                                     </label>
                                     <div className='relative'>
@@ -150,7 +151,7 @@ export default function ResetPassword() {
                                     </div>
                                     {errors.repeatPassword && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.repeatPassword.message}</span>
                                         </div>
                                     )}
@@ -169,7 +170,7 @@ export default function ResetPassword() {
                                         </div>
                                     ) : (
                                         <div className='flex items-center justify-center gap-2'>
-                                            <RefreshCw className='h-5 w-5' />
+                                            <Icon icon={Refresh} className='h-5 w-5' />
                                             <span>Actualitzar contrasenya</span>
                                         </div>
                                     )}
@@ -181,7 +182,7 @@ export default function ResetPassword() {
                                         to={APP_ROUTES.FORGOT_PASSWORD}
                                         className='inline-flex items-center gap-2 text-secondary hover:text-purple-800 font-medium transition-colors duration-300'
                                     >
-                                        <Mail className='size-5' />
+                                        <Icon icon={Envelope} className='size-5' />
                                         <span>No has rebut el codi? Torna a enviar</span>
                                     </Link>
                                 </div>

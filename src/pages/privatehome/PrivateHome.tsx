@@ -1,20 +1,21 @@
 import './privatehome.css';
 import { useQuery } from '@tanstack/react-query';
 import { eventsActions } from '../../actions/eventsActions';
-import Calendar from '../../components/events/calendar/CalendarSwiper';
-import { Calendar1, Handshake, Newspaper, ExternalLink } from 'lucide-react';
+import EventCard from '../../components/events/EventCard';
+import { Calendar, Handshake, FileText, LinkSquare, CalendarX } from 'reicon';
+import Icon from '../../components/ui/Icon';
 import { postsActions } from '../../actions/postsActions';
 import Posts from '../../components/posts/Posts';
 import Spinner from '../../components/ui/Spinner';
+import EmptyState from '../../components/ui/EmptyState';
 import PrivateLayout from '../PrivateLayout';
 import Heading from '../../components/ui/Heading';
-import { IonButton } from '@ionic/react';
-import 'swiper/css';
-import 'swiper/css/effect-cards';
-import 'swiper/css/pagination';
+import { IonButton, useIonRouter } from '@ionic/react';
+import { APP_ROUTES } from '../../constants/endpoints';
 
 const PrivateHome: React.FC = () => {
-  const { data: events, isLoading: isLoadingEvents } = useQuery({
+  const router = useIonRouter();
+  const { data: events, isLoading: isLoadingEvents, isError: isEventsError, refetch: refetchEvents } = useQuery({
     queryKey: ['events'],
     queryFn: eventsActions.getAllEvents
   });
@@ -24,11 +25,15 @@ const PrivateHome: React.FC = () => {
     queryFn: postsActions.getAllPosts
   });
 
+  const upcomingEvents = events
+    ? [...events]
+        .sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime())
+        .slice(0, 3)
+    : [];
+
   if (isLoadingEvents || isLoadingPosts) return <Spinner />
   if (events) return (
     <PrivateLayout
-      title='Dashboard'
-      headerColor='secondary'
       contentColor='light'
     >
       <main className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100'>
@@ -37,18 +42,41 @@ const PrivateHome: React.FC = () => {
         <section className='container mx-auto'>
           <div className='flex items-center justify-between mb-4'>
             <Heading
-              title="el Calendari"
+              title="Pròxims esdeveniments"
               variant="h1"
-              icon={Calendar1}
+              icon={Calendar}
               iconSize={10}
               className='text-transparent bg-clip-text'
             />
           </div>
 
-          <div className='relative'>
-            <div className='inset-0 rounded'></div>
-            <Calendar events={events} />
-          </div>
+          {isEventsError ? (
+            <EmptyState
+              icon={CalendarX}
+              title="No s'han pogut carregar els esdeveniments"
+              description="Comprova la connexió i torna-ho a provar."
+              actionLabel="Reintentar"
+              onAction={() => refetchEvents()}
+            />
+          ) : upcomingEvents.length > 0 ? (
+            <div className='space-y-3'>
+              {upcomingEvents.map(event => (
+                <EventCard key={event.id} event={event} />
+              ))}
+              <button
+                onClick={() => router.push(APP_ROUTES.PRIVATE_LISTS, 'forward')}
+                className='w-full py-3 text-secondary font-semibold hover:underline'
+              >
+                Veure calendari complet
+              </button>
+            </div>
+          ) : (
+            <EmptyState
+              icon={CalendarX}
+              title="No hi ha esdeveniments propers"
+              description="Torna més endavant per veure nous entrenos i curses."
+            />
+          )}
         </section>
 
         {/* News Section */}
@@ -58,7 +86,7 @@ const PrivateHome: React.FC = () => {
               <Heading
                 title="notícies"
                 variant="h1"
-                icon={Newspaper}
+                icon={FileText}
                 iconSize={10}
               />
             </div>
@@ -100,7 +128,7 @@ const PrivateHome: React.FC = () => {
                       Beneficis del Club
                     </span>
                     <div className='flex items-center gap-2'>
-                      <ExternalLink className='size-6 text-white group-hover:translate-x-1 transition-transform duration-300' />
+                      <Icon icon={LinkSquare} className='size-6 text-white group-hover:translate-x-1 transition-transform duration-300' />
                     </div>
                   </div>
                 </IonButton>

@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Preferences } from '@capacitor/preferences'
 import PublicLayout from '../PublicLayout'
 import { IonButton, IonSpinner, useIonRouter } from '@ionic/react'
-import { ChevronRight, ChevronLeft, Star, CheckCircle, LogIn, FilePenLine } from 'lucide-react'
+import { ChevronRight, ChevronLeft, Star, CheckCircle, Login, PenLine } from 'reicon'
+import Icon from '../../components/ui/Icon'
 import { APP_ROUTES } from '../../constants/endpoints'
 
 interface OnboardingStep {
@@ -18,25 +19,25 @@ const onboardingSteps: OnboardingStep[] = [
         id: 1,
         title: "Benvingut a Deporunners",
         description: "Descobreix totes les funcionalitats que tenim preparades per a tu. Comença el teu viatge amb nosaltres tant si ets nou/va Soci, com si ja ho eres i tornes a usar la App en la nova actualització.",
-        icon: <Star className="h-12 w-12 text-secondary" />
+        icon: <Icon icon={Star} className="h-12 w-12 text-secondary" />
     },
     {
         id: 2,
         title: "Registra't",
         description: "T'hauràs de tornar a registrar si us plau. Tan fàcil com anar a la secció PRIMERA VEGADA i posar l'email que has utilitzat per donar-te d'alta al Club i una contrasenya.",
-        icon: <FilePenLine className="h-12 w-12 text-secondary" />
+        icon: <Icon icon={PenLine} className="h-12 w-12 text-secondary" />
     },
     {
         id: 3,
         title: "Accedir a la aplicació",
         description: "Un cop fet el registre correctament, ja podràs accedir per INICIAR SESSIÓ amb les teves credencials.",
-        icon: <LogIn className="h-12 w-12 text-secondary" />
+        icon: <Icon icon={Login} className="h-12 w-12 text-secondary" />
     },
     {
         id: 4,
         title: "Tot està preparat!",
         description: "Un cop dins, explora el calendari, apunta't a les llistes d'entrenaments, curses i actes socials que et proposem, i revisa notícies i avantatges que com a Deporunner tens al teu abast.",
-        icon: <CheckCircle className="h-12 w-12 text-green-500" />
+        icon: <Icon icon={CheckCircle} className="h-12 w-12 text-green-500" />
     }
 ]
 
@@ -130,7 +131,7 @@ export default function OnboardingPage() {
                                             : 'text-white'
                                         }`}
                                 >
-                                    <ChevronLeft className="size-5 text-white" />
+                                    <Icon icon={ChevronLeft} className="size-5 text-white" />
                                     <span className='text-white'>Anterior</span>
                                 </IonButton>
 
@@ -150,7 +151,7 @@ export default function OnboardingPage() {
                                     ) : (
                                         <>
                                             <span className='text-white'>{isLastStep ? 'Començar' : 'Següent'}</span>
-                                            <ChevronRight className="size-5 text-white" />
+                                            <Icon icon={ChevronRight} className="size-5 text-white" />
                                         </>
                                     )}
                                 </IonButton>

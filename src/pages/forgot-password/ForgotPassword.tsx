@@ -3,7 +3,8 @@ import PublicLayout from '../PublicLayout'
 import { IonInput, IonSpinner, useIonRouter } from '@ionic/react'
 import { Link } from 'react-router-dom'
 import { ForgotFormData } from '../../interfaces/auth.interface'
-import { KeyRound, Mail, AlertCircle } from 'lucide-react'
+import { Key, Envelope, AlertCircle } from 'reicon'
+import Icon from '../../components/ui/Icon'
 import { useMutation } from '@tanstack/react-query'
 import { authActions } from '../../actions/authActions'
 import { toast } from 'react-toastify'
@@ -56,7 +57,7 @@ export default function ForgotPassword() {
                                 {/* Email Field */}
                                 <div className='space-y-2'>
                                     <label htmlFor="email" className='flex items-center gap-2 text-sm font-semibold text-gray-700'>
-                                        <Mail className='h-4 w-4 text-secondary' />
+                                        <Icon icon={Envelope} className='h-4 w-4 text-secondary' />
                                         Correu electrònic
                                     </label>
                                     <div className='relative'>
@@ -79,7 +80,7 @@ export default function ForgotPassword() {
                                     </div>
                                     {errors.email && (
                                         <div className="flex items-center gap-2 text-red-500 text-sm">
-                                            <AlertCircle className='h-4 w-4' />
+                                            <Icon icon={AlertCircle} className='h-4 w-4' />
                                             <span>{errors.email.message}</span>
                                         </div>
                                     )}
@@ -98,7 +99,7 @@ export default function ForgotPassword() {
                                         </div>
                                     ) : (
                                         <div className='flex items-center justify-center gap-2'>
-                                            <KeyRound className='size-5' />
+                                            <Icon icon={Key} className='size-5' />
                                             <span>Enviar instruccions</span>
                                         </div>
                                     )}
@@ -110,7 +111,7 @@ export default function ForgotPassword() {
                                         to={APP_ROUTES.REGISTER}
                                         className='inline-flex items-center gap-2 text-secondary hover:text-orange-800 font-medium transition-colors duration-300'
                                     >
-                                        <Mail className='h-4 w-4' />
+                                        <Icon icon={Envelope} className='h-4 w-4' />
                                         <span>No estàs registrat? Crea un compte</span>
                                     </Link>
                                 </div>
