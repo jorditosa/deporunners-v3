@@ -9,7 +9,7 @@ const wdOpts = {
         platformName: 'Android',
         'appium:automationName': 'UiAutomator2',
         'appium:deviceName': 'Android',
-        'appium:appPackage': 'cat.deporunners',
+        'appium:appPackage': 'cat.deporunners.app',
         'appium:appActivity': '.MainActivity',
         'appium:noReset': true,
     }
