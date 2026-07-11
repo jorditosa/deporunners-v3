@@ -1,3 +1,12 @@
+// Minimal member shape returned by the Strapi `GET /wp/member?email=` proxy.
+// Only the three fields registration needs — the backend must NOT return the
+// full WP user object (email, roles, capabilities…) to an unauthenticated caller.
+export interface MemberLookup {
+  soci_id: number;
+  username: string;
+  avatar: string;
+}
+
 interface AvatarUrls {
   "24": string;
   "48": string;

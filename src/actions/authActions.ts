@@ -1,10 +1,10 @@
 import { AxiosResponse, isAxiosError } from 'axios';
-import { apiAuthClient, apiClient, apiWPClient } from '../api/client';
+import { apiAuthClient, apiClient } from '../api/client';
 import { ForgotFormData, JWTPayload, LoginApiResponse, LoginFormData, RegisterFormData, ResetFormData } from '../interfaces/auth.interface';
 import { jwtDecode } from "jwt-decode";
 import { isTokenValidFormat } from '../helpers/jwt';
 import { Preferences } from '@capacitor/preferences';
-import { WordPressUserApiResponse } from '../interfaces/wordpres.interface';
+import { MemberLookup } from '../interfaces/wordpres.interface';
 
 export const authActions = {
 
@@ -35,21 +35,28 @@ export const authActions = {
         const { email, password } = formData;
         try {
 
-            const userInfo: WordPressUserApiResponse = await apiWPClient.get(`users?search=${encodeURIComponent(email)}&context=edit`);
-            if (!userInfo.data || userInfo.data.length === 0) {
+            let member: MemberLookup;
+            try {
+                const res = await apiClient.get<MemberLookup>(`wp/member`, { params: { email } });
+                member = res.data;
+            } catch (e) {
+                if (isAxiosError(e) && e.response?.status === 404) {
+                    throw new Error(`No s'ha trobat l'usuari.`);
+                }
+                throw e;
+            }
+            if (!member) {
                 throw new Error(`No s'ha trobat l'usuari.`);
             }
-
-            const user = userInfo.data[0];
 
             const { data } = await apiClient.post(
                 `auth/local/register`,
                 {
-                    username: user.name,
+                    username: member.username,
                     email,
                     password,
-                    soci_id: user.id,
-                    avatar: user.avatar_urls["48"],
+                    soci_id: member.soci_id,
+                    avatar: member.avatar,
                 }
             );
             return data
