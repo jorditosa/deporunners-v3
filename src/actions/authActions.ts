@@ -25,7 +25,7 @@ export const authActions = {
             return data;
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error.message ?? "Login error");
+                throw new Error(error.response.data?.error?.message ?? "Login error");
             }
             throw error
         }
@@ -62,7 +62,7 @@ export const authActions = {
             return data
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                const errorMessage = error.response.data.error.message;
+                const errorMessage = error.response.data?.error?.message;
 
                 if (errorMessage === "Email or Username are already taken") {
                     throw new Error("Ja estàs d'alta a la App");
@@ -87,7 +87,7 @@ export const authActions = {
             return response
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error.message ?? "Register error");
+                throw new Error(error.response.data?.error?.message ?? "Register error");
             }
             throw error
         }
@@ -105,7 +105,7 @@ export const authActions = {
             return response
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error.message ?? "Forgot password error");
+                throw new Error(error.response.data?.error?.message ?? "Forgot password error");
             }
             throw error
         }
@@ -117,7 +117,7 @@ export const authActions = {
             const response = await apiClient.post(
                 `auth/reset-password`,
                 {
-                    code,
+                    code: code.trim(),
                     password,
                     passwordConfirmation: repeatPassword
                 }
@@ -125,7 +125,7 @@ export const authActions = {
             return response
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error.message ?? "Forgot password error");
+                throw new Error(error.response.data?.error?.message ?? "Reset password error");
             }
             throw error
         }
@@ -155,7 +155,7 @@ export const authActions = {
 
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error?.message ?? 'Session error');
+                throw new Error(error.response.data?.error?.message ?? 'Session error');
             }
             throw error;
         }
@@ -167,7 +167,7 @@ export const authActions = {
             return respone;
         } catch (error) {
             if (isAxiosError(error) && error.response) {
-                throw new Error(error.response.data.error?.message ?? 'Delete account error');
+                throw new Error(error.response.data?.error?.message ?? 'Delete account error');
             }
             throw error;
         }

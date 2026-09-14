@@ -70,7 +70,7 @@ export default function ResetPassword() {
                                             color={"secondary"}
                                             type="text"
                                             fill='outline'
-                                            placeholder='Introdueix el codi rebut per email'
+                                            placeholder='Enganxa el codi rebut per email'
                                             className={`transition-all duration-300 ${errors.code ? 'border-red-300' : 'border-gray-200 focus:border-secondary'
                                                 }`}
                                             {...register("code", {

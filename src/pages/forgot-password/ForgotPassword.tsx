@@ -23,7 +23,7 @@ export default function ForgotPassword() {
             toast.error(error.message)
         },
         onSuccess: () => {
-            toast.success("Email amb les instruccions enviat")
+            toast.success("Si l'email està registrat, rebràs un codi per correu")
             reset()
             router.push(APP_ROUTES.RESET_PASSWORD)
         }
