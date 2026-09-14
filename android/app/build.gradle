@@ -8,8 +8,8 @@ android {
         applicationId "cat.deporunners.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
@@ -18,10 +18,14 @@ android {
 
     signingConfigs {
         release {
+            // Passwords live in android/keystore.properties (gitignored), not in git.
+            def keystoreProps = new Properties()
+            def keystorePropsFile = rootProject.file('keystore.properties')
+            if (keystorePropsFile.exists()) keystorePropsFile.withInputStream { keystoreProps.load(it) }
             storeFile file('upload-keystore.jks')
-            storePassword '6Y&*7wfW!6*NdX&g'
-            keyAlias 'upload'
-            keyPassword '6Y&*7wfW!6*NdX&g'
+            storePassword keystoreProps['storePassword']
+            keyAlias keystoreProps.getProperty('keyAlias', 'upload')
+            keyPassword keystoreProps['keyPassword']
         }
     }
 
