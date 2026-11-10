@@ -220,6 +220,12 @@ ion-tab-bar {
   padding-bottom: var(--ion-safe-area-bottom, 16px);
 }
 
+/* Android 16 (target 36) forces edge-to-edge: never pad less than the real system bar insets. */
+:root.plt-android {
+  --ion-safe-area-top: max(env(safe-area-inset-top), 0.5rem);
+  --ion-safe-area-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
 :root {
   --ion-safe-area-bottom: 1rem;
   --ion-safe-area-top: 0.5rem;
